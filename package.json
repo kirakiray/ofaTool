@@ -1,0 +1,23 @@
+{
+  "name": "xdtool",
+  "version": "1.0.0",
+  "description": "Make front-end development easier",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirakiray/XDTool.git"
+  },
+  "author": "YAO",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/kirakiray/XDTool/issues"
+  },
+  "homepage": "https://github.com/kirakiray/XDTool#readme",
+  "dependencies": {
+    "faye-websocket": "^0.11.3"
+  }
+}
