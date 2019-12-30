@@ -14,13 +14,13 @@ module.exports = {
             [".gif", "image/gif"],
             [".jpg", "image/jpeg"],
             [".svg", "image/svg+xml"],
-            [".html", "text/html"],
-            [".htm", "text/html"],
-            [".js", "application/javascript"],
-            [".css", "text/css"],
             [".appcache", "text/cache-manifest"],
-            [".json", "application/json"],
-            [".map", "application/octet-stream"]
+            [".map", "application/octet-stream"],
+            [".html", "text/html;charset=utf-8"],
+            [".htm", "text/html;charset=utf-8"],
+            [".js", "application/javascript;charset=utf-8"],
+            [".css", "text/css;charset=utf-8"],
+            [".json", "application/json;charset=utf-8"]
         ]),
         // 需不要gzip的类型
         nozip: new Set([".bmp", ".png", ".gif", ".jpg"]),

@@ -6,6 +6,8 @@ const http = require('http');
 const util = require('util');
 const zlib = require('zlib');
 const gzip = util.promisify(zlib.gzip)
+const URL = require("url");
+const querystring = require("querystring");
 
 // 静态服务器
 const staticSkin = require("./skins/static");
@@ -85,6 +87,12 @@ class PureServer {
                 // 是否需要压缩
                 gzip: false
             };
+
+            // 获取对象及参数数据
+            let urlObj = URL.parse(request.url);
+            let params = querystring.parse(urlObj.query);
+            ctx.pathname = urlObj.pathname;
+            ctx.params = params;
 
             // 运行skins
             await runSkin({ target: this, ctx, task: this._skins.map(skinObj => skinObj.skin) });
