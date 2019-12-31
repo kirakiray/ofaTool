@@ -1,6 +1,31 @@
 const URL = require("url");
 const querystring = require("querystring");
 
+// 获取post的数据
+const getPostData = (req) => new Promise((reslove, reject) => {
+    let body = "";
+    // isBuffer;
+    req.on('data', function (data) {
+        body += data;
+    });
+    req.on('end', function () {
+        let data;
+        let contentType = req.headers['content-type'];
+        switch (contentType) {
+            case "application/x-www-form-urlencoded":
+                data = querystring.parse(body);
+                break;
+            case "application/json":
+                data = JSON.parse(body);
+                break;
+            case "text/plain":
+                data = body;
+                break;
+        }
+        reslove(data);
+    });
+});
+
 class Route {
     constructor(target, path) {
         this._target = target;
@@ -54,9 +79,26 @@ module.exports = {
             // 运行队列内callback
             let { sets } = targetEntrancer;
 
-            for (let o of sets) {
-                await o.func(ctx);
+            // 获取方式
+            let method = ctx.request.method.toLowerCase();
+
+            switch (method) {
+                case "post":
+                    let postData = await getPostData(ctx.request);
+                    ctx.data = postData;
+                    break;
             }
+            await Promise.all(sets.map(e => {
+                if (e.type.toLowerCase() === method) {
+                    return e.func(ctx);
+                } else {
+                    return Promise.resolve("");
+                }
+            }));
+
+            // for (let o of sets) {
+            //     await o.func(ctx);
+            // }
         }
     }
 };
