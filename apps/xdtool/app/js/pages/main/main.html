@@ -8,7 +8,13 @@
     .xt_left {
         width: 230px;
         height: 100%;
+        overflow-y: auto;
         background-color: #fff;
+    }
+
+    .xt_right {
+        position: relative;
+        flex: 1;
     }
 
     h3 {
@@ -19,16 +25,23 @@
         padding: 10px 0;
         border-bottom: #ece9f1 solid 1px;
     }
+
+    .pannel {
+        flex: 1;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
 </style>
 
 <div class="container">
     <div class="xt_left">
         <h3>项目</h3>
-        <pj-block></pj-block>
-        <pj-block></pj-block>
-        <pj-block></pj-block>
-        <pj-block></pj-block>
-        <pj-block></pj-block>
-        <pj-block></pj-block>
+        <div xv-tar="pjCon"> </div>
+    </div>
+    <div class="xt_right">
+        <div class="pannel" style="margin: 6px">
+            <pannel-info></pannel-info>
+        </div>
     </div>
 </div>

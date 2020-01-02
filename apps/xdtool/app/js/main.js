@@ -4,5 +4,9 @@ drill = async (drill) => {
         baseUrl: "js/"
     });
 
+    // 加载基础库
+    await load("util/ofaStorage");
+
+    // 载入主体frame
     await load('comps/ele-frame -pack');
 }

@@ -7,6 +7,12 @@
     color: #1a051d;
     font-size: 12px;
     cursor: pointer;
+    user-select: none;
+}
+
+.pj_block[active="1"] {
+    background-color: #f4f4f4;
+    cursor: default;
 }
 
 .pj_block:hover {

@@ -83,9 +83,33 @@ class PureServer {
                 respone,
                 body: undefined,
                 respHead: respHead,
+                set respType(val) {
+                    switch (val) {
+                        case "json":
+                            val = "application/json;charset=utf-8";
+                            break;
+                        case "text":
+                            val = "text/plain;charset=utf-8";
+                            break;
+                    }
+                    this.respHead['Content-Type'] = val;
+                },
+                get respType() {
+                    return this.respHead['Content-Type'];
+                },
+
+                get cookies() {
+                    let cookies = {};
+                    request.headers && request.headers.cookie.split(';').forEach(cookie => {
+                        let parts = cookie.match(/(.*?)=(.*)$/)
+                        cookies[parts[1].trim()] = (parts[2] || '').trim();
+                    });
+                    return cookies;
+                },
+
                 code: undefined,
                 // 是否需要压缩
-                gzip: false
+                gzip: null
             };
 
             // 获取对象及参数数据
@@ -107,6 +131,11 @@ class PureServer {
             }
 
             if (ctx.body) {
+                if (ctx.gzip === null && typeof ctx.body === "string") {
+                    // 返回数据是字符串，并且gzip未被配置过
+                    ctx.gzip = true;
+                }
+
                 if (ctx.gzip) {
                     ctx.respHead['Content-Encoding'] = 'gzip';
                     ctx.body = await gzip(ctx.body);
