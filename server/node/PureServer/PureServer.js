@@ -62,7 +62,7 @@ class PureServer {
     // 端口号
     _port = 9669;
 
-    set listen(port = 9669) {
+    set port(port = 9669) {
         this._port = port;
 
         let server = this._server = http.createServer();
@@ -154,7 +154,7 @@ class PureServer {
         server.listen(port);
     }
 
-    get _port() {
+    get port() {
         return this._port;
     }
 

@@ -5,28 +5,40 @@ Page(async (load) => {
     let timeUtil = await load('util/timeUtil');
 
     // 项目地址
-    const projectData = [{
+    const projectDatas = [{
         path: "/Users/huangyao/开发/test",
+        urlKey: "test",
         modifyTime: 1577911241534
     }, {
         path: "/Users/huangyao/Desktop/随便测试一下",
+        urlKey: "suibian",
         modifyTime: 1577971291534
     }];
 
     return {
         data: {
             // 当前项目的url
-            projectUrl: `http://localhost:9669/test/index.html`
+            projectUrl: "",
+            // 当前项目目录地址
+            projectDir: ""
         },
         ready() {
             console.log("初始化成功");
 
             // 添加项目项目文件
-            projectData.forEach(e => {
+            projectDatas.forEach(e => {
+                // 获取最后的名称
+                let enames = /.+\/(.+)/.exec(e.path);
+
+                // 生成url地址
+                
+
                 this.$pjCon.push({
                     tag: "pj-block",
-                    name: "名称",
-                    tips: timeUtil.getRecentDesc(e.modifyTime)
+                    name: e.name || enames[1],
+                    tips: timeUtil.getRecentDesc(e.modifyTime),
+                    // 项目数据
+                    project: e
                 });
             });
 
@@ -47,9 +59,11 @@ Page(async (load) => {
 
             // 根据激活状态，设置信息
             this.$pjCon.watch(`[active=1]`, (e, tars) => {
-                tars.forEach(e => {
-
-                });
+                let target = tars[0];
+                if (target) {
+                    // 设置关键信息
+                    this.projectDir = target.project.path;
+                }
             }, true);
         }
     };

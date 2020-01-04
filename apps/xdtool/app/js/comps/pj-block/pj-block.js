@@ -8,7 +8,9 @@ Component({
         // 项目名称
         name: "(empty)",
         // 下面的时间
-        tips: ""
+        tips: "",
+        // 项目数据
+        project: ""
     },
     attrs: ["active"]
 });

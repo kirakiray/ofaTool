@@ -3,29 +3,53 @@ const { PureServer } = require("./node/PureServer");
 const getRandomId = () => Math.random().toString(32).substr(2);
 
 // 默认启动
-let serverObj = new PureServer();
+let runningServer = new PureServer();
 
 // 设置监听端口
-serverObj.listen = 9876;
+runningServer.port = 9876;
 
-let xdtoolKey = `xdtool_${getRandomId()}`;
+// 打开软件
+function openSoftware(opts) {
+    let softAfterName = `${opts.name}_${getRandomId()}`;
 
-// 目前只打开xdtool工具
-// 设置静态目录
-serverObj.setStatic(`/${xdtoolKey}/`, process.cwd() + "/apps/xdtool/app/");
+    // 引用相应的server main.js
+    let serverControl = require(`../apps/${opts.name}/server/main`);
 
-// 打开相应app页面
-let win = new BrowserWindow({
-    width: 1280,
-    height: 720,
-    frame: false,
-    titleBarStyle: "hiddenInset",
-    webPreferences: {
-        nodeIntegration: true
-    }
+    // 运行注册函数
+    serverControl.register({
+        runningServer
+    });
+
+    // 目前只打开xdtool工具
+    // 设置静态目录
+    runningServer.setStatic(`/${softAfterName}/`, process.cwd() + `/apps/${opts.name}/app/`);
+
+    // 打开相应app页面
+    let win = new BrowserWindow({
+        width: 1280,
+        height: 720,
+        frame: false,
+        titleBarStyle: "hiddenInset",
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+
+    win.loadURL(`http://localhost:${runningServer.port}/${softAfterName}/index.html`);
+
+    // 打开开发者工具
+    win.webContents.openDevTools()
+
+    // 关闭后注销函数
+    win.on("close", e => {
+        // 注销函数
+        serverControl.unregister({
+            runningServer
+        });
+    });
+}
+
+openSoftware({
+    type: "apps",
+    name: "xdtool"
 });
-
-win.loadURL(`http://localhost:${9876}/${xdtoolKey}/index.html`);
-
-// 打开开发者工具
-win.webContents.openDevTools()
