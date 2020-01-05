@@ -9,4 +9,6 @@ module.exports = async (runningServer) => {
         });
         ctx.respType = "json";
     });
+
+    return router;
 }

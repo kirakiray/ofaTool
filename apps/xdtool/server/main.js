@@ -9,13 +9,13 @@ exports.register = async (opts) => {
     let { runningServer } = opts;
 
     // 添加项目
-    routers.push(addProjectInit(runningServer));
+    routers.push(await addProjectInit(runningServer));
 }
 
 // 注销函数
 exports.unregister = () => {
     // 注销所有接口
-    router.forEach(e => {
+    routers.forEach(e => {
         e.remove();
     });
 
