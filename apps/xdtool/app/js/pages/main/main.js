@@ -1,4 +1,4 @@
-Page(async (load) => {
+define(async (load) => {
     // 加载主体框架
     await load('comps/pj-block -pack', 'pannel/pannel-info -pack');
 
@@ -16,6 +16,7 @@ Page(async (load) => {
     }];
 
     return {
+        temp: true,
         data: {
             // 当前项目的url
             projectUrl: "",
@@ -31,7 +32,7 @@ Page(async (load) => {
                 let enames = /.+\/(.+)/.exec(e.path);
 
                 // 生成url地址
-                
+
 
                 this.$pjCon.push({
                     tag: "pj-block",

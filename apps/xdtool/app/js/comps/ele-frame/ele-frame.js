@@ -1,16 +1,24 @@
 Component(async () => {
-    // 获取当前窗口
-    const {
-        remote
-    } = require('electron');
+    let win;
+    try {
+        // 获取当前窗口
+        const {
+            remote
+        } = require('electron');
 
-    const win = remote.getCurrentWindow();
+        win = remote.getCurrentWindow();
+    } catch (e) {
+
+    }
 
     return {
         tag: "ele-frame",
         temp: true,
         proto: {
             dblTitle() {
+                if (!win) {
+                    return;
+                }
                 if (win.isMaximized()) {
                     win.unmaximize();
                 } else {

@@ -6,10 +6,10 @@ const addProjectInit = require("./addProject");
 
 // 注册函数
 exports.register = async (opts) => {
-    let { runningServer } = opts;
+    let { pureServer, sAgent } = opts;
 
     // 添加项目
-    routers.push(await addProjectInit(runningServer));
+    routers.push(await addProjectInit(pureServer));
 }
 
 // 注销函数
