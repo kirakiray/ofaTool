@@ -6,6 +6,9 @@ drill = async (drill) => {
 
     window.stanz = $.xdata;
 
+    // 加入页面
+    $('ele-frame').push(`<xd-page src="js/pages/main/main.js -r" class="main_page"></xd-page>`);
+
     // 加载基础库
     await load("util/ofaStorage", "util/StanzClientAgent");
 

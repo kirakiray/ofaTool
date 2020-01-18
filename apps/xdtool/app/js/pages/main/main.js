@@ -1,19 +1,9 @@
 define(async (load) => {
     // 加载主体框架
-    await load('comps/pj-block -pack', 'pannel/pannel-info -pack');
+    await load('comps/pj-block -pack', 'pannels/pannel-info -pack', 'pannels/pannel-file -pack');
 
-    let timeUtil = await load('util/timeUtil');
-
-    // 项目地址
-    const projectDatas = [{
-        path: "/Users/huangyao/开发/test",
-        urlKey: "test",
-        modifyTime: 1577911241534
-    }, {
-        path: "/Users/huangyao/Desktop/随便测试一下",
-        urlKey: "suibian",
-        modifyTime: 1577971291534
-    }];
+    // 项目数据
+    let stData = await load("data/stData");
 
     return {
         temp: true,
@@ -24,24 +14,7 @@ define(async (load) => {
             projectDir: ""
         },
         ready() {
-            console.log("初始化成功");
-
-            // 添加项目项目文件
-            projectDatas.forEach(e => {
-                // 获取最后的名称
-                let enames = /.+\/(.+)/.exec(e.path);
-
-                // 生成url地址
-
-
-                this.$pjCon.push({
-                    tag: "pj-block",
-                    name: e.name || enames[1],
-                    tips: timeUtil.getRecentDesc(e.modifyTime),
-                    // 项目数据
-                    project: e
-                });
-            });
+            stData.projects.sync(this.$pjCon, null, true);
 
             // 点击激活状态修正
             this.$pjCon.on("click", 'pj-block', e => {
@@ -63,7 +36,7 @@ define(async (load) => {
                 let target = tars[0];
                 if (target) {
                     // 设置关键信息
-                    this.projectDir = target.project.path;
+                    this.projectDir = target.path;
                 }
             }, true);
         }

@@ -1,0 +1,110 @@
+:host {
+    display: block;
+}
+
+.line {
+    display: flex;
+}
+
+.sanjiao {
+    position: relative;
+    z-index: 10;
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: auto 16px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(img/sanjiao.svg);
+}
+
+.icon {
+    width: 24px;
+    height: 30px;
+    background-image: url(img/dir.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.file_block {
+    position: relative;
+    font-size: 12px;
+    user-select: none;
+}
+
+.sanjiao {
+    transition: all ease .1s;
+}
+
+.file_block[isdir="false"] .sanjiao {
+    background-image: none;
+}
+
+.file_block[diropen="false"] .sanjiao {
+    transform: rotate(-90deg);
+}
+
+.line_name {
+    padding-left: 6px;
+    height: 30px;
+    line-height: 30px;
+    color: #333;
+}
+
+.line_name_hoverline {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    border-radius: 4px;
+}
+
+.line_name_hoverline:hover {
+    background-color: rgba(0, 162, 255, 0.116);
+}
+
+.childs {
+    margin-left: 20px;
+}
+
+.file_block[isdir="true"] .icon {
+    background-image: url(img/dir.svg);
+    background-size: auto 22px;
+}
+
+.file_block .icon {
+    background-image: url(img/file.svg);
+    background-size: 15px auto;
+}
+
+.file_block[extname="css"] .icon {
+    background-image: url(img/icon-css.svg);
+    background-size: auto 16px;
+}
+
+.file_block[extname="json"] .icon {
+    background-image: url(img/icon-json.svg);
+    background-size: auto 16px;
+}
+
+.file_block[extname="png"] .icon {
+    background-image: url(img/icon-png.svg);
+    background-size: auto 17px;
+}
+
+.file_block[extname="jpg"] .icon {
+    background-image: url(img/icon-jpg.svg);
+    background-size: auto 17px;
+}
+
+.file_block[extname="html"] .icon {
+    background-image: url(img/icon-html.svg);
+    background-size: auto 15px;
+}
+
+.file_block[extname="js"] .icon {
+    background-image: url(img/icon-js.svg);
+    background-size: auto 16px;
+}

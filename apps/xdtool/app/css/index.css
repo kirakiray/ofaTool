@@ -9,3 +9,12 @@ body {
 .main_page {
   height: 100%;
 }
+@font-face {
+  font-family: 'iconfont';  /* project id 1610973 */
+  src: url('//at.alicdn.com/t/font_1610973_e2lyxkyqfgk.eot');
+  src: url('//at.alicdn.com/t/font_1610973_e2lyxkyqfgk.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1610973_e2lyxkyqfgk.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1610973_e2lyxkyqfgk.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1610973_e2lyxkyqfgk.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1610973_e2lyxkyqfgk.svg#iconfont') format('svg');
+}

@@ -15,7 +15,8 @@ stanzAgent.port = 9866;
 
 // 打开软件
 function openSoftware(opts) {
-    let softAfterName = `${opts.name}_${getRandomId()}`;
+    // let softAfterName = `${opts.name}_${getRandomId()}`;
+    let softAfterName = `${opts.name}`;
 
     // 生成stanz对象
     let sAgent = stanzAgent.create({
@@ -34,10 +35,12 @@ function openSoftware(opts) {
     // 设置静态目录
     pureServer.setStatic(`/${softAfterName}/`, process.cwd() + `/apps/${opts.name}/app/`);
 
+    console.log("dizhi => ", `http://localhost:${pureServer.port}/${softAfterName}/index.html`);
+
     // 打开相应app页面
     let win = new BrowserWindow({
-        width: 1280,
-        height: 720,
+        width: 720,
+        height: 480,
         frame: false,
         titleBarStyle: "hiddenInset",
         webPreferences: {

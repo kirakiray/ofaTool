@@ -1,0 +1,25 @@
+:host {
+    display: block;
+    user-select: none;
+}
+
+.path_con {
+    color: #aaa;
+    font-size: 12px;
+}
+
+.select_area {
+    user-select: all;
+}
+
+.path_line_icon {
+    display: inline-block;
+    font-size: 14px;
+    font-family: iconfont;
+    color: #222;
+    cursor: pointer;
+}
+
+.path_line_icon[hide=""] {
+    display: none;
+}

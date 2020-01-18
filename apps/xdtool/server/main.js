@@ -1,15 +1,26 @@
 // 路由数组
 const routers = [];
 
-// 添加项目接口初始化
-const addProjectInit = require("./addProject");
+const { initStaticServer } = require("./task/initStaticServer");
 
 // 注册函数
 exports.register = async (opts) => {
     let { pureServer, sAgent } = opts;
 
-    // 添加项目
-    routers.push(await addProjectInit(pureServer));
+    // 项目数据
+    sAgent.xdata.projects = [{
+        tag: "pj-block",
+        path: "/Users/huangyao/开发/test",
+        urlKey: "test",
+        modifyTime: 1577911241534
+    }, {
+        tag: "pj-block",
+        path: "/Users/huangyao/Desktop/随便测试一下",
+        modifyTime: 1577971291534
+    }];
+
+    // 静态服务器初始化服务
+    initStaticServer(sAgent.xdata.projects, pureServer);
 }
 
 // 注销函数
