@@ -10,7 +10,7 @@ Component(async (load) => {
             // 是否文件夹
             isDir: false,
             // 目录是否打开
-            diropen: true,
+            diropen: false,
             // 文件后缀名
             extname: "",
             // 不同步的字段
@@ -29,11 +29,11 @@ Component(async (load) => {
             // 打开或关闭文件夹
             toggleDir() {
                 let diropen = this.diropen = !this.diropen;
-                if (diropen) {
-                    this.$childs.display = "";
-                } else {
-                    this.$childs.display = "none";
-                }
+                // if (diropen) {
+                //     this.$childs.display = "";
+                // } else {
+                //     this.$childs.display = "none";
+                // }
             }
         },
         ready() { }

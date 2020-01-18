@@ -44,6 +44,11 @@
     transform: rotate(-90deg);
 }
 
+
+.file_block[diropen="false"] .childs {
+    display: none;
+}
+
 .line_name {
     padding-left: 6px;
     height: 30px;
