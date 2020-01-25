@@ -8,7 +8,7 @@
 
 .sanjiao {
     position: relative;
-    z-index: 10;
+    z-index: 1;
     margin-top: 5px;
     width: 20px;
     height: 20px;
@@ -54,6 +54,10 @@
     height: 30px;
     line-height: 30px;
     color: #333;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .line_name_hoverline {

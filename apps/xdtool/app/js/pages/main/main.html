@@ -5,17 +5,12 @@
         height: 100%;
     }
 
-    .xt_left,
     .xt_left2 {
-        width: 230px;
+        width: 260px;
         height: 100%;
         margin-left: 3px;
         overflow-y: auto;
         background-color: #fff;
-    }
-
-    .xt_left2 {
-        width: 300px;
     }
 
     .xt_right {
@@ -38,19 +33,43 @@
         background-color: #fff;
         border-radius: 5px;
     }
+
+    .p_overview {
+        box-sizing: border-box;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+    }
+
+    .iconfont {
+        font-family: iconfont;
+        font-size: 17px;
+    }
 </style>
 
-<div class="container">
-    <div class="xt_left">
-        <h3>项目</h3>
-        <div xv-tar="pjCon"> </div>
+<slide-frame active="projects" :hideleft="hideFrameLeft">
+    <div slide-frame-btn="one" slot="btn">
+        <span class="iconfont" style="font-size:20px;">&#xe600;</span>
     </div>
-    <div class="xt_left2">
-        <pannel-file />
+    <div slide-frame-btn="projects" slot="bottomBtn">
+        <span class="iconfont">&#xe603;</span>
     </div>
-    <div class="xt_right">
-        <div class="pannel" style="margin: 6px">
-            <pannel-info :project-url="projectUrl" :project-dir="projectDir"></pannel-info>
+    <div slide-frame-page="one">
+        <div class="container">
+            <div class="xt_left2">
+                <pannel-file />
+            </div>
+            <div class="xt_right">
+                <div class="pannel" style="margin: 6px">
+                    <pannel-info></pannel-info>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+    <div class="p_overview" slide-frame-page="projects">
+        <pannel-p-overview xv-tar="pOverview"></pannel-p-overview>
+    </div>
+</slide-frame>

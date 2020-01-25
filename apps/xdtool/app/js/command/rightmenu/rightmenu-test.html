@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>right-menu test</title>
+    <script src="../../xdframe.js"></script>
+    <link rel="stylesheet" href="right-menu.css">
+    <script>
+        load("./rightmenu").then(f => window.rightmenu = f);
+    </script>
+</head>
+
+<body>
+    <!-- <right-menu></right-menu> -->
+
+    <div class="menu_con">
+        <div class="menu_list">
+            <div class="group">
+                <div class="menu_block">
+                    <div class="menu_block_name">哈哈1</div>
+                </div>
+                <div class="menu_block">
+                    <div class="menu_block_name">哈哈2</div>
+                </div>
+                <div class="menu_block">
+                    <div class="menu_block_name">哈哈3</div>
+                </div>
+            </div>
+            <div class="group">
+                <div class="menu_block">
+                    <div class="menu_block_name">哈哈444444</div>
+                </div>
+                <div class="menu_block">
+                    <div class="menu_block_name">哈哈5555555</div>
+                </div>
+                <div class="menu_block san_jiao">
+                    <div class="menu_block_name">哈哈66666</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="testEle" style="height:400px;background-color: rgba(0,0,0,.01);"></div>
+
+
+    <script>
+        $('#testEle').on("contextmenu", e => {
+
+            // 设定菜单
+            rightmenu([
+                {
+                    label: '文件',
+                    click() {
+                        console.log('点击事件');
+                    }
+                },
+                {
+                    label: '编辑', submenu: [
+                        { label: '保存' },
+                        { label: '另存' }
+                    ]
+                },
+                { type: "separator" },
+                { label: '帮助' }
+            ], e.originalEvent);
+        });
+    </script>
+</body>
+
+</html>

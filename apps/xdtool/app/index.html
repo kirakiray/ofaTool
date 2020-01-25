@@ -9,12 +9,56 @@
     <link rel="stylesheet" href="css/index.css">
     <script src="js/xdframe.js" async></script>
     <script src="js/main.js" async></script>
+    <style>
+        .loading_con {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            transition: all ease .3s;
+        }
+
+        .loading_con.hide {
+            opacity: 0;
+        }
+
+        .loading_con>svg {
+            animation: loading_animate linear .8s infinite
+        }
+
+        @keyframes loading_animate {
+            0% {
+                transform: rotate(0deg)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+    </style>
 </head>
 
 <body>
     <ele-frame>
         <!-- <xd-page src="js/pages/main/main.js -r" class="main_page"></xd-page> -->
     </ele-frame>
+
+    <div id="startLoading" class="loading_con">
+        <svg width="38" height="38" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg" stroke="#3a89b6">
+            <g fill="none" fill-rule="evenodd">
+                <g transform="translate(1 1)" stroke-width="2">
+                    <circle stroke-opacity=".5" cx="18" cy="18" r="18" />
+                    <path d="M36 18c0-9.94-8.06-18-18-18"></path>
+                </g>
+            </g>
+        </svg>
+    </div>
 </body>
 
 </html>

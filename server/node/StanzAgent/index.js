@@ -97,3 +97,4 @@ class StanzAgent extends EventEmitter {
 }
 
 exports.StanzServerAgent = StanzServerAgent;
+exports.stanz = stanz;

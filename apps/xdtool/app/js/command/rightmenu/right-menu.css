@@ -1,0 +1,61 @@
+.menu_con {
+    display: inline-block;
+    min-width: 180px;
+    box-shadow: rgba(0, 0, 0, .1) 0 0 10px;
+    user-select: none;
+    border-radius: 4px;
+    background-color: #c9c7c5;
+    background-image: linear-gradient(-45deg, #f1f1f1, #f5f5f5);
+    border: rgba(0, 0, 0, .08) solid 1px;
+    animation: menu_con_anime ease .2s;
+}
+
+@keyframes menu_con_anime {
+    0% {
+        opacity: 0;
+        transform: translate(3px, 3px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+.menu_block {
+    position: relative;
+    padding: 0 20px 0 20px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 13px;
+    color: #000;
+    cursor: default;
+}
+
+.menu_block.san_jiao:after {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    display: block;
+    content: "";
+    border-left: #000 solid 5px;
+    border-top: transparent solid 5px;
+    border-bottom: transparent solid 5px;
+}
+
+.menu_block:hover {
+    color: #fff;
+    background-color: #2c6de4;
+}
+
+.menu_block.san_jiao:hover:after {
+    border-left: #fff solid 5px;
+}
+
+.group {
+    padding: 4px 0;
+}
+
+.group+.group {
+    border-top: rgba(0, 0, 0, .08) solid 2px;
+}

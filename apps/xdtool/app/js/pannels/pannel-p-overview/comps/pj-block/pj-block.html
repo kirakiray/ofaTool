@@ -1,0 +1,52 @@
+<style>
+    :host {
+        display: block;
+        margin: 14px 14px 0 0;
+    }
+
+    .pj_block {
+        width: 120px;
+        min-height: 120px;
+        cursor: pointer;
+        /* background-color: rgba(0, 0, 0, .05); */
+    }
+
+    .pj_block_pic {
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+        border-radius: 4px;
+        background-color: rgba(0, 0, 0, .05);
+    }
+
+    .pj_block_name {
+        padding: 8px 4px 0;
+        font-size: 12px;
+        line-height: 18px;
+        max-height: 36px;
+        overflow: hidden;
+        color: #333;
+    }
+
+    .pj_block_time {
+        padding: 0 4px 4px;
+        font-size: 10px;
+        color: #999;
+    }
+
+    .pj_block[active="1"] .pj_block_name {
+        color: rgba(2, 94, 170, 0.973);
+    }
+    .pj_block[active="1"] .pj_block_time {
+        color: rgba(2, 94, 170, 0.973);
+    }
+
+    .pj_block[active="1"] .pj_block_pic {
+        background-color: rgba(2, 94, 170, 0.116);
+    }
+</style>
+<div class="pj_block" :active="active">
+    <div class="pj_block_pic"></div>
+    <div class="pj_block_name">{{name}}</div>
+    <div class="pj_block_time">{{tips}}</div>
+</div>

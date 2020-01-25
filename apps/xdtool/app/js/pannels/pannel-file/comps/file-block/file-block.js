@@ -14,7 +14,7 @@ Component(async (load) => {
             // 文件后缀名
             extname: "",
             // 不同步的字段
-            _unsync: ["isDir", "extname"],
+            _unpush: ["isDir", "extname"],
         },
         watch: {
             name(e, val) {

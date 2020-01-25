@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../../xdframe.js"></script>
+    <script>
+        load("./slide-frame");
+    </script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <slide-frame active="1">
+        <div slot="btn" slide-frame-btn="1">1</div>
+        <div slot="btn" slide-frame-btn="2">2</div>
+        <div slot="btn" slide-frame-btn="3">3</div>
+        <div slide-frame-page="1">111111111</div>
+        <div slide-frame-page="2">22222222</div>
+        <div slide-frame-page="3">333333</div>
+    </slide-frame>
+</body>
+
+</html>

@@ -18,5 +18,13 @@ drill = async (drill) => {
     // 初始加载stanz库
     let stData = await load("data/stData");
 
+    // 慢行1秒
+    setTimeout(() => {
+        $("#startLoading").class.add("hide");
+        setTimeout(() => {
+            $("#startLoading").remove();
+        }, 300);
+    }, 300);
+
     console.log("stData => ", stData);
 }

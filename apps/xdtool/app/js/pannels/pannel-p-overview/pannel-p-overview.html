@@ -1,0 +1,29 @@
+<style>
+    :host {
+        display: block;
+    }
+
+    .overview_con {
+        padding-top: 20px;
+        padding-left: 20px;
+    }
+
+    .title {
+        line-height: 30px;
+        font-size: 14px;
+    }
+
+    .overview_slot {
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>
+
+<div class="overview_con">
+    <div class="title">项目
+        <loading-ele size="12" :hide="hideLoading" style="display:inline-block;"></loading-ele>
+    </div>
+    <div class="overview_slot">
+        <slot></slot>
+    </div>
+</div>

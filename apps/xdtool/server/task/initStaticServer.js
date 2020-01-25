@@ -18,19 +18,19 @@ const initStatic = async (projects, pureServer) => {
     projects.forEach(e => {
         // 设置没设置过的项目
         if (!staticMap.has(e.path)) {
-            let rootUrl = `/s_${getRandowStr()}`;
-            pureServer.setStatic(rootUrl, e.path);
-            rootUrl = `http://${ip}${rootUrl}`;
+            let mapKey = `/s_${getRandowStr()}`;
+            pureServer.setStatic(mapKey, e.path);
+            let rootUrl = `http://${ip}${mapKey}`;
             e.webRootUrl = rootUrl;
 
             staticMap.set(e.path, {
                 path: e.path,
-                rootUrl
+                rootUrl, mapKey
             });
         }
 
         // 反向查找是否删除的项目
-        
+
     });
 
     initStaticTimer = false;
@@ -62,5 +62,7 @@ exports.initStaticServer = (projects, pureServer) => {
 }
 
 exports.clearStaticServer = (projects, pureServer) => {
-    debugger
+    staticMap.forEach(e => {
+        pureServer.removeStatic(e.mapKey);
+    })
 }
