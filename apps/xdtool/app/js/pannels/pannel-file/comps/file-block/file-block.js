@@ -27,13 +27,22 @@ Component(async (load) => {
         },
         proto: {
             // 打开或关闭文件夹
-            toggleDir() {
+            async toggleDir() {
                 let diropen = this.diropen = !this.diropen;
-                // if (diropen) {
-                //     this.$childs.display = "";
-                // } else {
-                //     this.$childs.display = "none";
-                // }
+
+                if (diropen) {
+                    this.emit("toggleDir", {
+                        path: this.getPath()
+                    });
+                }
+            },
+            // 获取相应目录地址
+            getPath() {
+                let arr = this.parents("file-block");
+                arr.unshift(this);
+                arr.reverse();
+
+                return arr.map(e => e.name).join("/");
             }
         },
         ready() { }

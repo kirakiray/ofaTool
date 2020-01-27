@@ -5,7 +5,7 @@ const staticMap = new Map();
 
 // 遍历项目并设置静态服务器
 let initStaticTimer;
-const initStatic = async (projects, pureServer) => {
+const initStatic = async (xdata, pureServer) => {
     if (initStaticTimer) {
         return;
     }
@@ -15,12 +15,13 @@ const initStatic = async (projects, pureServer) => {
     // 重新获取ip地址
     let ip = getIPAddress();
 
-    projects.forEach(e => {
+    xdata.projects.forEach(e => {
         // 设置没设置过的项目
         if (!staticMap.has(e.path)) {
-            let mapKey = `/s_${getRandowStr()}`;
-            pureServer.setStatic(mapKey, e.path);
-            let rootUrl = `http://${ip}${mapKey}`;
+            let mapKey = `/s_${getRandowStr()}/`;
+            pureServer.setStatic(mapKey, e.path + "/");
+            // let rootUrl = `http://${ip}:9876${mapKey}`;
+            let rootUrl = `http://${ip}:${pureServer.port}${mapKey}`;
             e.webRootUrl = rootUrl;
 
             staticMap.set(e.path, {
@@ -53,15 +54,15 @@ const getIPAddress = () => {
 }
 
 // 初始化项目静态逻辑
-exports.initStaticServer = (projects, pureServer) => {
-    initStatic(projects, pureServer);
+exports.initStaticServer = (xdata, pureServer) => {
+    initStatic(xdata, pureServer);
 
-    projects.watch(e => {
-        initStatic(projects, pureServer);
+    xdata.watch(e => {
+        initStatic(xdata, pureServer);
     })
 }
 
-exports.clearStaticServer = (projects, pureServer) => {
+exports.clearStaticServer = (xdata, pureServer) => {
     staticMap.forEach(e => {
         pureServer.removeStatic(e.mapKey);
     })

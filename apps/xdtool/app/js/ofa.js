@@ -2153,7 +2153,7 @@
                 let {
                     $root
                 } = this;
-                return $root && $root.ele.host && createXhearProxy($root.host);
+                return $root && $root.ele.host && createXhearProxy($root.ele.host);
             }
 
             setData(key, value) {
@@ -2621,9 +2621,11 @@
                             let target = event.target;
 
                             // 目标元素
-                            let delegateTarget = target.parents(selector)[0];
-                            if (!delegateTarget && target.is(selector)) {
+                            let delegateTarget;
+                            if (target.is(selector)) {
                                 delegateTarget = target;
+                            } else {
+                                delegateTarget = target.parents(selector)[0];
                             }
 
                             // 判断是否在selector内
@@ -2743,6 +2745,10 @@
 
             while (howmany > 0) {
                 let childEle = children[index];
+
+                if (!childEle) {
+                    break;
+                }
 
                 reArr.push(createXhearProxy(childEle));
 
@@ -4915,12 +4921,12 @@
 
     drill.config({
         paths: {
-            "^\\$/": "https://kirakiray.github.io/xdframe_lib/dollar2/"
+            "^\\$/": "https://kirakiray.github.io/ofa_lib/dollar2/"
         }
     });
 
     // 配置全局变量
-    glo.XDFrame = {
+    glo.ofa = {
         drill,
         $,
         version: 2000000

@@ -9,7 +9,9 @@ define(async (load) => {
         temp: true,
         data: {
             // 是否隐藏左边工具栏
-            hideFrameLeft: true
+            hideFrameLeft: true,
+            // 激活中的pannel
+            activePannel: "projects"
         },
         watch: {},
         ready() {

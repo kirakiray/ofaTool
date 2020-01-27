@@ -38,28 +38,28 @@ function openSoftware(opts) {
     console.log(`http://localhost:${pureServer.port}/${softAfterName}/index.html?pageid=${getRandomId()}`);
 
     // 打开相应app页面
-    // let win = new BrowserWindow({
-    //     width: 720,
-    //     height: 480,
-    //     frame: false,
-    //     titleBarStyle: "hiddenInset",
-    //     webPreferences: {
-    //         nodeIntegration: true
-    //     }
-    // });
+    let win = new BrowserWindow({
+        width: 720,
+        height: 480,
+        frame: false,
+        titleBarStyle: "hiddenInset",
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
 
-    // win.loadURL(`http://localhost:${pureServer.port}/${softAfterName}/index.html?pageid=${getRandomId()}`);
+    win.loadURL(`http://localhost:${pureServer.port}/${softAfterName}/index.html?pageid=${getRandomId()}`);
 
     // 打开开发者工具
-    // win.webContents.openDevTools()
+    win.webContents.openDevTools()
 
-    // // 关闭后注销函数
-    // win.on("close", e => {
-    //     // 注销函数
-    //     serverControl.unregister({
-    //         pureServer, sAgent
-    //     });
-    // });
+    // 关闭后注销函数
+    win.on("close", e => {
+        // 注销函数
+        serverControl.unregister({
+            pureServer, sAgent
+        });
+    });
 }
 
 openSoftware({

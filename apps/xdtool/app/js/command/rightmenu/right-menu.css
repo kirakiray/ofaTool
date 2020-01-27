@@ -7,13 +7,12 @@
     background-color: #c9c7c5;
     background-image: linear-gradient(-45deg, #f1f1f1, #f5f5f5);
     border: rgba(0, 0, 0, .08) solid 1px;
-    animation: menu_con_anime ease .2s;
 }
 
 @keyframes menu_con_anime {
     0% {
         opacity: 0;
-        transform: translate(3px, 3px);
+        transform: translate(6px, 0);
     }
 
     100% {
@@ -25,17 +24,18 @@
 .menu_block {
     position: relative;
     padding: 0 20px 0 20px;
-    height: 22px;
-    line-height: 22px;
-    font-size: 13px;
+    height: 28px;
+    line-height: 28px;
+    font-size: 12px;
     color: #000;
     cursor: default;
+    animation: menu_con_anime ease .1s;
 }
 
 .menu_block.san_jiao:after {
     position: absolute;
     right: 10px;
-    top: 6px;
+    top: 9px;
     display: block;
     content: "";
     border-left: #000 solid 5px;
@@ -58,4 +58,38 @@
 
 .group+.group {
     border-top: rgba(0, 0, 0, .08) solid 2px;
+}
+
+.menu_block>.menu_con {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(calc(100% - 2px), 0);
+}
+
+.menu_block:hover>.menu_con {
+    display: block;
+}
+
+.menu_con.to_top .menu_block>.menu_con {
+    top: auto;
+    bottom: 0;
+}
+
+.menu_con.to_left .menu_block>.menu_con {
+    left: auto;
+    right: 0;
+    transform: translate(calc(-100% + 2px), 0);
+}
+
+.menu_con.to_left .menu_block.san_jiao:after {
+    border-left: transparent solid 0;
+    border-right: #000 solid 5px;
+    border-top: transparent solid 5px;
+    border-bottom: transparent solid 5px;
+}
+
+.menu_con.to_left .menu_block.san_jiao:hover:after {
+    border-right: #fff solid 5px;
 }

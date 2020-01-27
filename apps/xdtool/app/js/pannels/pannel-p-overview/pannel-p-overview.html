@@ -17,6 +17,22 @@
         display: flex;
         flex-wrap: wrap;
     }
+
+    .add_btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 14px 14px 0 0;
+        width: 120px;
+        height: 120px;
+        font-size: 40px;
+        font-weight: lighter;
+        cursor: pointer;
+    }
+
+    .add_btn:hover {
+        background-color: #eee;
+    }
 </style>
 
 <div class="overview_con">
@@ -25,5 +41,6 @@
     </div>
     <div class="overview_slot">
         <slot></slot>
+        <div class="add_btn" @click="addProject" title="添加新项目">+</div>
     </div>
 </div>

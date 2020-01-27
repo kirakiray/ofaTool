@@ -1,5 +1,6 @@
 // 路由数组
 const routers = [];
+const getRandomId = () => Math.random().toString(32).substr(2);
 
 // 静态服务器初始化函数
 const { initStaticServer, clearStaticServer } = require("./task/initStaticServer");
@@ -9,25 +10,39 @@ const { initOpenDir } = require("./task/openDir");
 exports.register = async (opts) => {
     let { pureServer, sAgent } = opts;
 
+    let xdata = sAgent.xdata;
+
+    const tSotrage = await ofaStorage.getStorage("ofaStorage");
+
+    // 获取数据
+    let projectsData = await tSotrage.getItem("projects");
+
+    if (!projectsData) {
+        projectsData = [];
+        await tSotrage.setItem("projects", []);
+    }
+
+    // 去掉active
+    projectsData.forEach(e => e.active = 0);
+
     // 项目数据
-    sAgent.xdata.projects = [{
-        // tag: "pj-block",
-        path: "/Users/huangyao/开发/test",
-        urlKey: "test",
-        modifyTime: 1577911241534,
-        // 目录结构
-        dirs: []
-    }, {
-        // tag: "pj-block",
-        path: "/Users/huangyao/Desktop/随便测试一下",
-        modifyTime: 1577971291534,
-        // 目录结构
-        dirs: []
-    }];
+    xdata.projects = projectsData;
+
+    // 监听变动
+    xdata.projects.watch((e, projects) => {
+        // 保存项目记录
+        tSotrage.setItem("projects", projects.object);
+    });
+
+    // 目录对象数据
+    xdata.dirs = {};
 
     // 静态服务器初始化服务
-    initStaticServer(sAgent.xdata.projects, pureServer);
-    initOpenDir(sAgent.xdata.projects, pureServer);
+    initStaticServer(xdata, pureServer);
+
+    // 初始化文件系统
+    let rs = initOpenDir(xdata, pureServer);
+    routers.push(...rs)
 }
 
 // 注销函数
@@ -43,5 +58,5 @@ exports.unregister = ({
     routers.length = 0
 
     // 清除静态服务资源
-    clearStaticServer(sAgent.xdata.projects, pureServer);
+    clearStaticServer(sAgent.xdata, pureServer);
 }
