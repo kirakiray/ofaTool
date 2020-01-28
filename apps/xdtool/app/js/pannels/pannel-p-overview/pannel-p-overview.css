@@ -1,0 +1,70 @@
+:host {
+    display: block;
+}
+
+.overview_con {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.title {
+    margin-right: 20px;
+    line-height: 30px;
+    font-size: 14px;
+    /* border-bottom: rgb(243, 243, 243) solid 1px; */
+}
+
+.sort_line {
+    display: flex;
+    color: rgb(114, 114, 114);
+    line-height: 30px;
+    font-size: 12px;
+}
+
+.sort_selector {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.sort_selector_fake {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.overview_slot {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.add_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 14px 14px 0 0;
+    width: 120px;
+    height: 120px;
+    font-size: 40px;
+    font-weight: lighter;
+    order: 20000000;
+    cursor: pointer;
+}
+
+.add_btn:hover {
+    background-color: #eee;
+}
+
+.sort_selector_value {
+    padding-right: 16px;
+    background-image: url("./img/xiala2.svg");
+    background-position: right center;
+    background-size: 13px auto;
+    background-repeat: no-repeat;
+}

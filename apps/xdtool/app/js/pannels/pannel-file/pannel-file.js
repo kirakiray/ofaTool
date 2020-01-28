@@ -23,18 +23,21 @@ Component(async (load) => {
             stData.projects.watch("[active=1]", (e, vals) => {
                 let target = vals[0];
 
-                let dirs = stData.dirs[target.dirId];
-
                 if (oldDirs) {
                     // 清空再绑定
                     oldDirs.unsync(this.$fileCon);
                 }
 
                 this.$fileCon.empty();
-                // 覆盖绑定数据
-                dirs.sync(this.$fileCon, null, true);
 
-                oldDirs = dirs;
+                if (target) {
+                    let dirs = stData.dirs[target.dirId];
+
+                    // 覆盖绑定数据
+                    dirs.sync(this.$fileCon, null, true);
+
+                    oldDirs = dirs;
+                }
             });
 
             // 监听右键菜单

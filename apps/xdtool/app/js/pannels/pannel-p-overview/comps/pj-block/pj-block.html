@@ -5,6 +5,7 @@
     }
 
     .pj_block {
+        position: relative;
         width: 120px;
         min-height: 120px;
         cursor: pointer;
@@ -29,6 +30,7 @@
     }
 
     .pj_block_time {
+        display: none;
         padding: 0 4px 4px;
         font-size: 10px;
         color: #999;
@@ -37,6 +39,7 @@
     .pj_block[active="1"] .pj_block_name {
         color: rgba(2, 94, 170, 0.973);
     }
+
     .pj_block[active="1"] .pj_block_time {
         color: rgba(2, 94, 170, 0.973);
     }
@@ -44,9 +47,42 @@
     .pj_block[active="1"] .pj_block_pic {
         background-color: rgba(2, 94, 170, 0.116);
     }
+
+    .close_btn {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: default;
+        font-size: 20px;
+        font-weight: 100;
+        border-radius: 0 4px 0 0;
+    }
+
+    .pj_block[active="1"] .close_btn {
+        display: none;
+    }
+
+    .close_btn:hover {
+        background-color: rgba(255, 255, 255, .5);
+    }
+
+    .pj_block[showtime="addtime"] .addtime {
+        display: block;
+    }
+
+    .pj_block[showtime="modifytime"] .modifytime {
+        display: block;
+    }
 </style>
-<div class="pj_block" :active="active">
+<div class="pj_block" :active="active" :showtime="showTime">
     <div class="pj_block_pic"></div>
     <div class="pj_block_name">{{name}}</div>
-    <div class="pj_block_time">{{tips}}</div>
+    <div class="pj_block_time addtime">{{addTimeText}}</div>
+    <div class="pj_block_time modifytime">{{modifyTimeText}}</div>
+    <div class="close_btn" @click="removeBlock">×</div>
 </div>

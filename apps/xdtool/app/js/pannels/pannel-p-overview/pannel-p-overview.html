@@ -1,46 +1,18 @@
-<style>
-    :host {
-        display: block;
-    }
-
-    .overview_con {
-        padding-top: 20px;
-        padding-left: 20px;
-    }
-
-    .title {
-        line-height: 30px;
-        font-size: 14px;
-    }
-
-    .overview_slot {
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .add_btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 14px 14px 0 0;
-        width: 120px;
-        height: 120px;
-        font-size: 40px;
-        font-weight: lighter;
-        cursor: pointer;
-    }
-
-    .add_btn:hover {
-        background-color: #eee;
-    }
-</style>
-
 <div class="overview_con">
     <div class="title">项目
         <loading-ele size="12" :hide="hideLoading" style="display:inline-block;"></loading-ele>
     </div>
+    <div class="sort_line">排序
+        <div class="sort_selector">
+            <div class="sort_selector_value">{{sortValueText}}</div>
+            <select class="sort_selector_fake" xv-model="sortValue">
+                <option value="opentime">最近打开</option>
+                <option value="addtime">项目添加时间</option>
+            </select>
+        </div>
+    </div>
     <div class="overview_slot">
         <slot></slot>
-        <div class="add_btn" @click="addProject" title="添加新项目">+</div>
+        <div class="add_btn" @click="clickAddBtn" title="添加新项目">+</div>
     </div>
 </div>

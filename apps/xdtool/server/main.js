@@ -23,7 +23,7 @@ exports.register = async (opts) => {
     }
 
     // 去掉active
-    projectsData.forEach(e => e.active = 0);
+    // projectsData.forEach(e => e.active = 0);
 
     // 项目数据
     xdata.projects = projectsData;

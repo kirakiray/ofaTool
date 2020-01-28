@@ -4,9 +4,11 @@ drill.define(async (load) => {
     let stData = window.stData = xdAgent.xdata;
 
     // 添加不需要同步数据
-    stData.projects.forEach(e => {
-        e._unpush = ["active"];
-    });
+    stData.projects.watch((e, projects) => {
+        projects.forEach(e => {
+            e._unpush = ["active"];
+        });
+    }, true);
     stData._unpush = ["projectData"];
 
     stData.projectData = {
