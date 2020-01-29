@@ -24,7 +24,7 @@ drill = async (drill) => {
         setTimeout(() => {
             $("#startLoading").remove();
         }, 300);
-    }, 300);
+    }, 100);
 
     console.log("stData => ", stData);
 }

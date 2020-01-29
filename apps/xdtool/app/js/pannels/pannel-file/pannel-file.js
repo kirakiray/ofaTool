@@ -1,21 +1,51 @@
 Component(async (load) => {
     await load("./comps/file-block -pack");
 
-    let rightmenu = await load("command/rightmenu -pack");
+    let [rightmenu, dialog] = await load("command/rightmenu -pack", "command/dialog -pack");
 
     let stData = await load("data/stData");
 
-    let shell;
+    let shell, clipboard;
     try {
-        shell = require('electron').shell;
+        let elec = require('electron');
+        shell = elec.shell;
+        clipboard = elec.clipboard;
     } catch (e) {
         console.warn("require shell error => ", e);
+    }
+
+    // 需要隐藏的文件类型
+    let hideExprs = [/^\./, /^node_modules$/];
+
+    // 更新文件目录树状态
+    const refreshList = (block) => {
+        let isHide = false;
+        hideExprs.some(expr => {
+            if (expr.test(block.name)) {
+                block.hideblock = true;
+                isHide = true;
+            }
+            return isHide;
+        });
+
+        if (!isHide) {
+            block.forEach(e => refreshList(e));
+        }
     }
 
     return {
         tag: "pannel-file",
         temp: true,
         link: true,
+        data: {
+            dirName: "文件"
+        },
+        proto: {
+            // 修正目录树的状态
+            refreshList() {
+                this.$fileCon.forEach(e => refreshList(e));
+            }
+        },
         ready() {
             let oldDirs;
 
@@ -31,12 +61,18 @@ Component(async (load) => {
                 this.$fileCon.empty();
 
                 if (target) {
+                    // 更换dirName
+                    this.dirName = target.path.match(/.+\/(.+)/)[1];
+
                     let dirs = stData.dirs[target.dirId];
 
                     // 覆盖绑定数据
                     dirs.sync(this.$fileCon, null, true);
 
                     oldDirs = dirs;
+
+                    // 更新目录树状态
+                    this.refreshList();
                 }
             });
 
@@ -51,12 +87,26 @@ Component(async (load) => {
                         shell && shell.showItemInFolder(dir);
                     }
                 }, {
-                    label: `浏览器中打开`,
+                    label: `浏览器打开`,
                     click() {
                         let url = stData.projects.seek("[active=1]")[0].webRootUrl + delegateTarget.getPath();
 
                         shell.openExternal(url);
 
+                    }
+                },
+                { type: "separator" },
+                {
+                    label: "链接二维码",
+                    click() {
+
+                    }
+                }, {
+                    label: "复制链接",
+                    click() {
+                        let url = stData.projects.seek("[active=1]")[0].webRootUrl + delegateTarget.getPath();
+                        clipboard.writeText(url);
+                        dialog("复制链接成功");
                     }
                 }], e.originalEvent);
             });

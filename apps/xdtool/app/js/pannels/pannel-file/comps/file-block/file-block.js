@@ -13,10 +13,19 @@ Component(async (load) => {
             diropen: false,
             // 文件后缀名
             extname: "",
+            // 是否隐藏
+            hideblock: false,
             // 不同步的字段
-            _unpush: ["isDir", "extname"],
+            _unpush: ["isDir", "extname", "hideblock"],
         },
         watch: {
+            hideblock(e, val) {
+                if (val) {
+                    this.display = "none";
+                } else {
+                    this.display = "";
+                }
+            },
             name(e, val) {
                 // 获取文件后缀
                 let extname = /.+\.(.+)/.exec(val);

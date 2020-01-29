@@ -4675,7 +4675,7 @@
                         let linkPath = defaults.link;
                         if (linkPath) {
                             if (defaults.link === true) {
-                                linkPath = await load(`${relativeDir + fileName}.css -getPath`);
+                                linkPath = await load(`${relativeDir + fileName}.css -getPath -r`);
                             } else {
                                 linkPath = await load(`${defaults.link} -getPath`);
                             }

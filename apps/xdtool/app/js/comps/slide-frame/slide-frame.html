@@ -19,7 +19,14 @@
         width: 45px;
         height: 100%;
         background-color: #fff;
-        transition: width ease .2s;
+    }
+
+    .btns_slot {
+        display: flex;
+        flex-direction: column;
+        width: 45px;
+        overflow: hidden;
+        transition: all ease .2s;
     }
 
     .btootm_btns {
@@ -47,13 +54,16 @@
         flex: 1;
     }
 
-    .slide_frame[hideleft="true"] .left_btns_tool {
+    .slide_frame[hideleft="true"] .btns_slot {
+        opacity: 0;
         width: 0;
     }
 </style>
 <div class="slide_frame" :hideleft="hideleft">
     <div class="left_btns_tool">
-        <slot name="btn"></slot>
+        <div class="btns_slot">
+            <slot name="btn"></slot>
+        </div>
         <div class="btootm_btns">
             <slot name="bottomBtn"></slot>
         </div>

@@ -63,9 +63,10 @@
 .menu_block>.menu_con {
     display: none;
     position: absolute;
-    left: 0;
+    left: auto;
+    right: 0;
     top: 0;
-    transform: translate(calc(100% - 2px), 0);
+    transform: translate(calc(100%), 0);
 }
 
 .menu_block:hover>.menu_con {
@@ -80,7 +81,7 @@
 .menu_con.to_left .menu_block>.menu_con {
     left: auto;
     right: 0;
-    transform: translate(calc(-100% + 2px), 0);
+    transform: translate(calc(-100%), 0);
 }
 
 .menu_con.to_left .menu_block.san_jiao:after {

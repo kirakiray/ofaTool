@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dialog test</title>
+    <script src="../../ofa.js"></script>
+    <script>
+        load("./dialog").then(e => window.dialog = e);
+    </script>
+</head>
+
+<body>
+    <!-- <div class="dialog_outer">
+        <div class="toast_con">
+            <div class="toast_text">asdasdasdasdasdasdasdasdasd</div>
+            <div class="toast_close_btn">×</div>
+        </div>
+        <div class="toast_con">
+            <div class="toast_text">asdasdasdasdasdasdasdasdasd</div>
+            <div class="toast_close_btn">×</div>
+        </div>
+        <div class="toast_con">
+            <div class="toast_text">
+                asda sdasda sdasda sdas dasda sdasd asdas dasda sdasdas dasd asdasda sdasd asdasd asda sdasdasd
+            </div>
+            <div class="toast_close_btn">×</div>
+        </div>
+    </div> -->
+    <button id="toastTest">toast</button>
+    <script>
+        document.querySelector("#toastTest").onclick = () => {
+            dialog("hahahaa");
+        };
+    </script>
+</body>
+
+</html>

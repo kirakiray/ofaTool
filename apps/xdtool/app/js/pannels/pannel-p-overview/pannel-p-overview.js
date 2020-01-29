@@ -28,8 +28,6 @@
                 sortValue(e, val) {
                     let text = "";
 
-                    // let nowTime = new Date().getTime();
-
                     switch (val) {
                         case "addtime":
                             text = "项目添加时间";
@@ -38,7 +36,6 @@
                             this.forEach(e => {
                                 e.showTime = "addtime";
                                 e.refreshOrder();
-                                // e.style.order = Math.floor((nowTime - e.addTime) / 1000);
                             });
                             break;
                         case "opentime":
@@ -48,7 +45,6 @@
                             this.forEach(e => {
                                 e.showTime = "modifytime";
                                 e.refreshOrder();
-                                // e.style.order = Math.floor((nowTime - e.modifyTime) / 1000);
                             });
                             break;
                     }
@@ -94,6 +90,21 @@
                     });
                 }, 60000);
 
+                // 目录拖拽
+                this.on("dragover", e => e.preventDefault());
+                this.on("drop", e => {
+                    let files = e.originalEvent.dataTransfer.files;
+
+                    if (files && files.length) {
+                        let file = files[0];
+
+                        if (!file.type) {
+                            let path = file.path;
+                            this.addProject(path);
+                        }
+                    }
+                });
+
                 // 点击激活状态修正
                 this.on("click", 'pj-block', async e => {
                     if (!this.hideLoading) {
@@ -132,9 +143,12 @@
                         // 更新时间数据
                         delegateTarget.modifyTime = new Date().getTime();
 
+                        let sf = this.parents('slide-frame')[0];
+
                         // 延迟关闭loading
                         setTimeout(() => {
                             this.hideLoading = true;
+                            sf.active = "one";
                         }, 100);
                     }, 100);
                 });

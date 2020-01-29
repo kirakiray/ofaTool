@@ -1,0 +1,52 @@
+.dialog_outer {
+    position: fixed;
+    max-width: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 0;
+}
+
+.toast_con {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    color: rgb(61, 61, 61);
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, .1) 0 0 5px;
+    border-radius: 4px;
+    font-size: 12px;
+    word-break: break-all;
+    animation: toast_anime ease .3s;
+}
+
+@keyframes toast_anime {
+    0% {
+        opacity: 0;
+        transform: translate(20px, 0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+.toast_con:hover .toast_close_btn {
+    width: 20px;
+}
+
+.toast_close_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    width: 0;
+    overflow: hidden;
+    color: rgb(126, 126, 126);
+    cursor: default;
+    transition: all ease .2s;
+}
+
+.toast_close_btn:hover {
+    color: #000;
+}

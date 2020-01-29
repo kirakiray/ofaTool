@@ -1,55 +1,3 @@
-<style>
-    .container {
-        display: flex;
-        width: 100%;
-        height: 100%;
-    }
-
-    .xt_left2 {
-        width: 260px;
-        height: 100%;
-        margin-left: 3px;
-        overflow-y: auto;
-        background-color: #fff;
-    }
-
-    .xt_right {
-        position: relative;
-        flex: 1;
-    }
-
-    h3 {
-        border-bottom: #ededed;
-        color: #3f3356;
-        font-size: 12px;
-        margin: 0 10px 10px;
-        padding: 10px 0;
-        border-bottom: #ece9f1 solid 1px;
-    }
-
-    .pannel {
-        flex: 1;
-        padding: 20px;
-        background-color: #fff;
-        border-radius: 5px;
-    }
-
-    .p_overview {
-        box-sizing: border-box;
-        z-index: 10;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-    }
-
-    .iconfont {
-        font-family: iconfont;
-        font-size: 17px;
-    }
-</style>
-
 <slide-frame :active="activePannel" :hideleft="hideFrameLeft">
     <div slide-frame-btn="one" slot="btn">
         <span class="iconfont" style="font-size:20px;">&#xe600;</span>
@@ -57,19 +5,26 @@
     <div slide-frame-btn="projects" slot="bottomBtn">
         <span class="iconfont">&#xe603;</span>
     </div>
+    </div>
+    <div slide-frame-btn="config" slot="bottomBtn">
+        <span class="iconfont">&#xe609;</span>
+    </div>
     <div slide-frame-page="one">
         <div class="container">
-            <div class="xt_left2">
+            <div class="xt_left">
                 <pannel-file />
             </div>
             <div class="xt_right">
-                <div class="pannel" style="margin: 6px">
+                <!-- <div class="pannel">
                     <pannel-info></pannel-info>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
     <div class="p_overview" slide-frame-page="projects">
         <pannel-p-overview xv-tar="pOverview"></pannel-p-overview>
+    </div>
+    <div class="p_overview" slide-frame-page="config">
+        设置页
     </div>
 </slide-frame>

@@ -7,6 +7,7 @@ define(async (load) => {
 
     return {
         temp: true,
+        link: true,
         data: {
             // 是否隐藏左边工具栏
             hideFrameLeft: true,
@@ -15,6 +16,7 @@ define(async (load) => {
         },
         watch: {},
         ready() {
+            // 在有dir的情况下可以切换标签
             stData.projectData.watch("dir", (e, val) => {
                 setTimeout(() => {
                     this.hideFrameLeft = !val;
