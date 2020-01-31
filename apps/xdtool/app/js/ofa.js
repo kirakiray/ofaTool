@@ -2560,6 +2560,9 @@
                         let tarEle = e.target;
                         while (tarEle !== e.currentTarget) {
                             let par = tarEle.parentNode;
+                            if (!par) {
+                                break;
+                            }
                             let tarId = Array.from(par.children).indexOf(tarEle);
                             newKeys.unshift(tarId);
                             tarEle = par;
@@ -2679,6 +2682,7 @@
                     // 原生函数注册也干掉
                     let oriFun = originEve.get(eventName);
                     oriFun && this.ele.removeEventListener(eventName, oriFun);
+                    originEve.delete(eventName);
                 }
                 return this;
             },
@@ -4677,7 +4681,7 @@
                             if (defaults.link === true) {
                                 linkPath = await load(`${relativeDir + fileName}.css -getPath -r`);
                             } else {
-                                linkPath = await load(`${defaults.link} -getPath`);
+                                linkPath = await load(`${relativeDir + defaults.link} -getPath -r`);
                             }
                             linkPath && (temp = `<link rel="stylesheet" href="${linkPath}">\n` + temp);
                         }

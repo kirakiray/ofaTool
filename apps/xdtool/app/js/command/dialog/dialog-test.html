@@ -29,10 +29,32 @@
             <div class="toast_close_btn">×</div>
         </div>
     </div> -->
+
+    <!-- <div class="ercode_dialog_outer">
+        <div class="ercode_dialog">
+            <div class="ercode_img">
+                <img />
+            </div>
+            <div class="ercode_dialog_name"><span>http://baidu.com/</span></div>
+        </div>
+    </div> -->
+
+
     <button id="toastTest">toast</button>
+    <br>
+    <br>
+    <button id="ercodeTest">ercode弹窗</button>
+
     <script>
         document.querySelector("#toastTest").onclick = () => {
             dialog("hahahaa");
+        };
+
+        document.querySelector("#ercodeTest").onclick = () => {
+            dialog({
+                type: "ercode",
+                text: "https://baidu.com/"
+            });
         };
     </script>
 </body>

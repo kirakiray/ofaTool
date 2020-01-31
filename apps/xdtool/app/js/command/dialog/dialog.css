@@ -19,6 +19,58 @@
     animation: toast_anime ease .3s;
 }
 
+.ercode_dialog_outer {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ercode_dialog {
+    position: relative;
+    z-index: 2;
+    display: block;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, .1) 0 0 5px;
+    animation: toast_anime ease .3s;
+}
+
+.ercode_mask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.ercode_img {
+    display: block;
+    padding: 10px;
+}
+
+.ercode_img img {
+    display: block;
+    width: 180px;
+    height: 180px;
+}
+
+.ercode_dialog_name {
+    max-width: 180px;
+    padding: 0 10px 10px;
+    font-size: 12px;
+    user-select: none;
+    text-align: center;
+    word-break: break-all;
+}
+
+.ercode_dialog_name span {
+    user-select: all;
+}
+
 @keyframes toast_anime {
     0% {
         opacity: 0;

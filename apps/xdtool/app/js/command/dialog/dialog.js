@@ -1,5 +1,5 @@
 define(async (load) => {
-    await load("./dialog.css");
+    await load("./dialog.css", "../../util/qrcode.min.js");
 
     // 修正dialog_outer
     function fixOuter() {
@@ -63,6 +63,28 @@ define(async (load) => {
 
 
                 $(".dialog_outer").push(ele);
+                break;
+            case "ercode":
+                let qrcodeEle = $(`
+                <div class="ercode_dialog_outer">
+                    <div class="ercode_mask"></div>
+                    <div class="ercode_dialog">
+                        <div class="ercode_img">
+                        </div>
+                        <div class="ercode_dialog_name"><span>${defaults.text}</span></div>
+                    </div>
+                </div>
+                `);
+                new QRCode(qrcodeEle.que(".ercode_img").ele, {
+                    text: defaults.text,
+                    width: 180,
+                    height: 180
+                });
+                $('body').push(qrcodeEle);
+
+                qrcodeEle.que(".ercode_mask").on("click", e => {
+                    qrcodeEle.remove();
+                });
                 break;
         }
     }

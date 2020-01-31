@@ -1,5 +1,6 @@
 drill.define(async (load) => {
     let xdAgent = await stanzAgent("ws://localhost:9866", "100");
+    // let xdAgent = await stanzAgent("ws://192.168.0.106:9866", "100");
 
     let stData = window.stData = xdAgent.xdata;
 
@@ -26,6 +27,9 @@ drill.define(async (load) => {
             stData.projectData.dir = target.path;
         }
     }, true);
+
+    // 需要隐藏的文件类型
+    stData._hideExprs = [/^\./, /^node_modules$/];
 
     return xdAgent.xdata;
 });

@@ -22,9 +22,6 @@ exports.register = async (opts) => {
         await tSotrage.setItem("projects", []);
     }
 
-    // 去掉active
-    // projectsData.forEach(e => e.active = 0);
-
     // 项目数据
     xdata.projects = projectsData;
 

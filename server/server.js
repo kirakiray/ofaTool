@@ -41,6 +41,8 @@ function openSoftware(opts) {
     let win = new BrowserWindow({
         width: 720,
         height: 480,
+        minWidth: 600,
+        minHeight: 400,
         frame: false,
         titleBarStyle: "hiddenInset",
         webPreferences: {

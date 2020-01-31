@@ -14,22 +14,21 @@ Component(async (load) => {
         console.warn("require shell error => ", e);
     }
 
-    // 需要隐藏的文件类型
-    let hideExprs = [/^\./, /^node_modules$/];
-
     // 更新文件目录树状态
-    const refreshList = (block) => {
+    const refreshList = (block, hideExprs) => {
         let isHide = false;
         hideExprs.some(expr => {
             if (expr.test(block.name)) {
                 block.hideblock = true;
                 isHide = true;
+            } else {
+                block.hideblock = false;
             }
             return isHide;
         });
 
         if (!isHide) {
-            block.forEach(e => refreshList(e));
+            block.forEach(e => refreshList(e, hideExprs));
         }
     }
 
@@ -43,7 +42,7 @@ Component(async (load) => {
         proto: {
             // 修正目录树的状态
             refreshList() {
-                this.$fileCon.forEach(e => refreshList(e));
+                this.$fileCon.forEach(e => refreshList(e, stData._hideExprs));
             }
         },
         ready() {
@@ -97,9 +96,13 @@ Component(async (load) => {
                 },
                 { type: "separator" },
                 {
-                    label: "链接二维码",
+                    label: "二维码",
                     click() {
-
+                        let url = stData.projects.seek("[active=1]")[0].webRootUrl + delegateTarget.getPath();
+                        dialog({
+                            type: "ercode",
+                            text: url
+                        });
                     }
                 }, {
                     label: "复制链接",
