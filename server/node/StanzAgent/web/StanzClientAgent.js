@@ -49,7 +49,7 @@
                         xdata.watch(e => {
                             // 回音过滤
                             let newTrends = e.trends.filter(trend => {
-                                if (!historyTrends.has(trend.mid)) {
+                                if (!historyTrends.has(trend.mid) && !trend._unpush) {
                                     return true;
                                 }
                             });

@@ -23,12 +23,14 @@ function openSoftware(opts) {
         name: opts.name
     }, "100");
 
+    console.log(stanzAgent);
+
     // 引用相应的server main.js
     let serverControl = require(`../apps/${opts.name}/server/main`);
 
     // 运行注册函数
     serverControl.register({
-        pureServer, sAgent
+        pureServer, sAgent, stanzAgent
     });
 
     // 目前只打开xdtool工具
@@ -38,30 +40,30 @@ function openSoftware(opts) {
     console.log(`http://localhost:${pureServer.port}/${softAfterName}/index.html?pageid=${getRandomId()}`);
 
     // 打开相应app页面
-    let win = new BrowserWindow({
-        width: 720,
-        height: 480,
-        minWidth: 600,
-        minHeight: 400,
-        frame: false,
-        titleBarStyle: "hiddenInset",
-        webPreferences: {
-            nodeIntegration: true
-        }
-    });
+    // let win = new BrowserWindow({
+    //     width: 720,
+    //     height: 480,
+    //     minWidth: 600,
+    //     minHeight: 400,
+    //     frame: false,
+    //     titleBarStyle: "hiddenInset",
+    //     webPreferences: {
+    //         nodeIntegration: true
+    //     }
+    // });
 
-    win.loadURL(`http://localhost:${pureServer.port}/${softAfterName}/index.html?pageid=${getRandomId()}`);
+    // win.loadURL(`http://localhost:${pureServer.port}/${softAfterName}/index.html?pageid=${getRandomId()}`);
 
-    // 打开开发者工具
-    win.webContents.openDevTools()
+    // // 打开开发者工具
+    // win.webContents.openDevTools()
 
-    // 关闭后注销函数
-    win.on("close", e => {
-        // 注销函数
-        serverControl.unregister({
-            pureServer, sAgent
-        });
-    });
+    // // 关闭后注销函数
+    // win.on("close", e => {
+    //     // 注销函数
+    //     serverControl.unregister({
+    //         pureServer, sAgent
+    //     });
+    // });
 }
 
 openSoftware({

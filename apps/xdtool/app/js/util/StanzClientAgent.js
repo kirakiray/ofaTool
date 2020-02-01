@@ -41,6 +41,12 @@
 
                 switch (d.type) {
                     case "init":
+                        if (typeof stanz === "undefined") {
+                            console.log("stanz is undefined!!!!!!!!!!!!!!!!!!!!!!!!!");
+                            this.loaded = true;
+                            this.onload()
+                            return;
+                        }
                         // 初始化
                         let xdata = this.xdata = stanz(d.data);
                         this.loaded = true;

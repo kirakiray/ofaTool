@@ -54,16 +54,16 @@ const getIPAddress = () => {
 }
 
 // 初始化项目静态逻辑
-exports.initStaticServer = (xdata, pureServer) => {
+exports.initStaticServer = ({xdata, pureServer}) => {
     initStatic(xdata, pureServer);
 
     xdata.watch(e => {
         initStatic(xdata, pureServer);
     })
-}
 
-exports.clearStaticServer = (xdata, pureServer) => {
-    staticMap.forEach(e => {
-        pureServer.removeStatic(e.mapKey);
-    })
+    return () => {
+        staticMap.forEach(e => {
+            pureServer.removeStatic(e.mapKey);
+        })
+    }
 }

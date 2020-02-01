@@ -28,6 +28,10 @@
     flex: 1;
 }
 
+.xt_right_block {
+    margin-left: 3px;
+}
+
 h3 {
     border-bottom: #ededed;
     color: #3f3356;

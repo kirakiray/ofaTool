@@ -45,6 +45,10 @@ class wsServer extends EventEmitter {
 
                 let wsData = new WSAgent(ws, socketId);
 
+                if (params.agentId) {
+                    wsData.agentId = params.agentId;
+                }
+
                 // 添加到队列
                 targetSets.add(wsData);
 
@@ -61,8 +65,11 @@ class wsServer extends EventEmitter {
                     console.log('close', event.code, event.reason);
                     // 回收对象
                     this._wsMap.get(socketId).delete(wsData);
+                    this.emit("closeWSAgent", wsData);
                     wsData = ws = null;
                 }
+
+                this.emit("addWSAgent", wsData);
             } else {
                 // 授权不通过
                 socket.end();
@@ -72,19 +79,26 @@ class wsServer extends EventEmitter {
         server.listen(port);
     }
 
-    // 设定允许介入的id
-    addPermitID(id) {
-        let tarSets = this._wsMap.get(id);
+    // 设定允许介入的socketId
+    addPermitID(socketId) {
+        let tarSets = this._wsMap.get(socketId);
         if (!tarSets) {
             tarSets = new Set();
-            this._wsMap.set(id, tarSets);
+            this._wsMap.set(socketId, tarSets);
         }
         return tarSets;
     }
 
-    // 删除允许传入的id
-    deletePermitID(id) {
+    // 删除允许传入的socketId
+    deletePermitID(socketId) {
+        let tarSets = this._wsMap.get(socketId);
+        if (tarSets) {
+            tarSets.forEach(e => {
+                e._ws.close();
+            });
 
+            this._wsMap.delete(socketId);
+        }
     }
 
     // 授权带入
@@ -95,8 +109,8 @@ class wsServer extends EventEmitter {
     }
 
     // 发送数据
-    sendAll(data, id = "") {
-        let tarSets = this._wsMap.get(id);
+    sendAll(data, socketId = "") {
+        let tarSets = this._wsMap.get(socketId);
 
         if (tarSets) {
             tarSets.forEach(wsData => {
@@ -111,9 +125,10 @@ class wsServer extends EventEmitter {
 
 // 代理对象
 class WSAgent {
-    constructor(ws, id) {
+    constructor(ws, socketId) {
         this._ws = ws;
-        this.id = id;
+        this.agentId = Math.random().toString(32).slice(2);
+        this.socketId = socketId;
 
         ws.on("message", event => {
             this.onmessage(JSON.parse(event.data));

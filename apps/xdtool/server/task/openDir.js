@@ -77,7 +77,7 @@ const openProject = async (d, xdata) => {
 }
 
 // 关于项目内的打开文件目录树的行为
-exports.initOpenDir = (xdata, pureServer) => {
+exports.initOpenDir = ({xdata, pureServer}) => {
     let routers = [];
 
     // 添加刷新接口
@@ -97,5 +97,7 @@ exports.initOpenDir = (xdata, pureServer) => {
         ctx.respType = "json";
     });
 
-    return routers;
+    return () => {
+        routers.forEach(e => e.remove());
+    };
 }

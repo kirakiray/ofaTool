@@ -1,10 +1,8 @@
 define(async (load) => {
     // 加载主体框架
-    await load('pannels/pannel-info -pack', 'pannels/pannel-file -pack', "pannels/pannel-p-overview -pack", "pannels/pannel-config -pack", "comps/slide-frame -pack");
+    await load('pannels/pannel-info -pack', 'pannels/pannel-file -pack', "pannels/pannel-p-overview -pack", "pannels/pannel-config -pack", "comps/slide-frame -pack","pannels/pannel-remote -pack");
 
     let storage = await load("util/ofaStorage");
-
-    window.osto = storage;
 
     // 获取宽度
     let oWidth = await storage.getItem("main_xt_left_width");

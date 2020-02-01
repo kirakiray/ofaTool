@@ -12,11 +12,11 @@ class StanzServerAgent {
         // 监听变动
         wsServer.on("message", e => {
             let { data, type } = e.d;
-            let { id } = e.wsAgent;
+            let { socketId } = e.wsAgent;
             let stanzAgent;
             switch (type) {
                 case "init":
-                    stanzAgent = this._agents.get(id);
+                    stanzAgent = this._agents.get(socketId);
                     // 获取初始化数据
                     e.wsAgent.send({
                         type: "init",
@@ -24,7 +24,7 @@ class StanzServerAgent {
                     })
                     break;
                 case "upxdata":
-                    stanzAgent = this._agents.get(id);
+                    stanzAgent = this._agents.get(socketId);
 
                     // 更新数据
                     data.forEach(trend => {
@@ -33,7 +33,7 @@ class StanzServerAgent {
                     break;
                 case "msg":
                     // 消息接送
-                    stanzAgent = this._agents.get(id);
+                    stanzAgent = this._agents.get(socketId);
                     stanzAgent.emit("msg", {
                         data,
                         // 单独返回的方法
@@ -51,6 +51,15 @@ class StanzServerAgent {
                     break;
             }
         });
+
+        wsServer.on("addWSAgent", wsAgent => {
+            let stanzAgent = this._agents.get(wsAgent.socketId);
+            stanzAgent.emit("addWSAgent", wsAgent);
+        });
+        wsServer.on("closeWSAgent", wsAgent => {
+            let stanzAgent = this._agents.get(wsAgent.socketId);
+            stanzAgent.emit("closeWSAgent", wsAgent);
+        });
     }
 
     // port代理
@@ -61,29 +70,33 @@ class StanzServerAgent {
     /**
      * 生成stanz实例对象
      * @param {Object} obj stanz数据对象
-     * @param {String} id stanz数据对象的id
+     * @param {String} socketId stanz数据对象的socketId
      */
-    create(obj = {}, id) {
-        // 添加允许的id
-        this._wsServer.addPermitID(id);
+    create(obj = {}, socketId) {
+        let sAgent = this._agents.get(socketId);
 
-        let sAgent = new StanzAgent({ obj, id, host: this });
+        if (!sAgent) {
+            // 添加允许的socketId
+            this._wsServer.addPermitID(socketId);
 
-        sAgent.xdata.watch(e => {
-            sAgent.sendAll(e.trends, "upxdata");
-        });
+            sAgent = new StanzAgent({ obj, socketId, host: this });
 
-        this._agents.set(id, sAgent);
+            sAgent.xdata.watch(e => {
+                sAgent.sendAll(e.trends, "upxdata");
+            });
+
+            this._agents.set(socketId, sAgent);
+        }
 
         return sAgent;
     }
 }
 
 class StanzAgent extends EventEmitter {
-    constructor({ obj, id, host }) {
+    constructor({ obj, socketId, host }) {
         super();
         this.xdata = stanz(obj);
-        this.id = id;
+        this.socketId = socketId;
         this.host = host;
     }
 
@@ -92,7 +105,7 @@ class StanzAgent extends EventEmitter {
         this.host._wsServer.sendAll({
             type,
             data
-        }, this.id);
+        }, this.socketId);
     }
 }
 
