@@ -8,6 +8,7 @@
   font-size: 12px;
 }
 .list {
+  margin-top: 5px;
   min-height: 100px;
 }
 .list:empty {

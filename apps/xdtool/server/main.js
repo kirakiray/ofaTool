@@ -37,6 +37,9 @@ exports.register = async (opts) => {
     // 目录对象数据
     xdata.dirs = {};
 
+    // 离线端数据
+    xdata.remotersList = {}
+
     // 静态服务器初始化服务
     clearCalls.push(initStaticServer({ xdata, pureServer }));
 

@@ -36,11 +36,7 @@ class StanzServerAgent {
                     stanzAgent = this._agents.get(socketId);
                     stanzAgent.emit("msg", {
                         data,
-                        // 单独返回的方法
-                        send: (data) => e.wsAgent.send({
-                            type: "msg",
-                            data
-                        })
+                        wsAgent: e.wsAgent
                     });
                     break
                 case "ping":

@@ -137,9 +137,13 @@ class WSAgent {
         ws.on("close", e => this.onclose(e));
     }
 
-    // 发送消息ƒ
+    // 发送消息
     send(data) {
         this._ws.send(JSON.stringify(data));
+    }
+
+    sendMsg(data) {
+        this._ws.send(JSON.stringify({ type: "msg", data }));
     }
 
     // 得到消息

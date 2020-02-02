@@ -1,0 +1,24 @@
+.remote_block {
+  padding: 8px 0;
+  display: flex;
+  height: 40px;
+  border-bottom: #eee solid 1px;
+}
+.remote_block_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+}
+.remote_block_avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  background-color: #eee;
+}
+.name {
+  padding-bottom: 4px;
+}
+.href_info {
+  color: #aaa;
+}

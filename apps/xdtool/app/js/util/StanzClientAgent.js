@@ -2,7 +2,9 @@
     class StanzClientAgent {
         constructor() {
             Object.assign(this, {
+                // socketId
                 id: null,
+                agentId: null,
                 _ws: null,
                 _receives: [],
                 timer: "",
@@ -18,8 +20,14 @@
                 };
             }
 
+            let socketUrl = `${url}?id=${this.id}`;
+
+            if (this.agentId) {
+                socketUrl += `&agentId=${this.agentId}`;
+            }
+
             // 添加参数
-            let ws = this._ws = new WebSocket(`${url}?id=${this.id}`);
+            let ws = this._ws = new WebSocket(socketUrl);
 
             // 回音历史数据
             let historyTrends = new Set();
@@ -128,7 +136,15 @@
     glo.stanzAgent = (url, id) => {
         return new Promise((resolve, reject) => {
             let sdata = new StanzClientAgent();
-            sdata.id = String(id);
+
+            if (typeof id === "object") {
+                let obj = id;
+                sdata.id = String(obj.id);
+                obj.agentId && (sdata.agentId = obj.agentId);
+            } else {
+                sdata.id = String(id);
+            }
+
             sdata.onload = () => { resolve(sdata) }
             sdata.onerror = () => { reject() }
             sdata.url = url;
