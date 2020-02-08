@@ -3,13 +3,18 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 0 10px 10px;
   background-color: #fff;
   font-size: 12px;
 }
+.title {
+  height: 36px;
+  line-height: 36px;
+  border-bottom: #e9e9e9 solid 1px;
+}
 .list {
   margin-top: 5px;
-  min-height: 100px;
+  min-height: 60px;
 }
 .list:empty {
   display: flex;
@@ -20,4 +25,10 @@
   display: block;
   color: #aaa;
   content: "暂无打开的网页";
+}
+.list remote-block {
+  border-bottom: #fafafa solid 1px;
+}
+.list remote-block:last-child {
+  border-bottom: none;
 }

@@ -21,8 +21,18 @@ const remoteInit = ({ xdata, stanzAgent }) => {
 
                 if (targetBlock) {
                     targetBlock.href = data.href;
+                    targetBlock.ua = data.ua;
                 }
 
+                break;
+            case "console":
+                // 中转console指令
+                xdata.remoterConsoles[wsAgent.agentId].push({
+                    tag: "console-block",
+                    methodName: data.methodName,
+                    args: JSON.stringify(data.args),
+                    stack: data.stack
+                });
                 break;
         }
 
@@ -34,14 +44,21 @@ const remoteInit = ({ xdata, stanzAgent }) => {
             tag: "remote-block",
             agentId: wsAgent.agentId,
             name: "",
-            href: ""
+            href: "",
+            ua: ""
         });
+
+        xdata.remoterConsoles[wsAgent.agentId] = {};
+        xdata.remoterData[wsAgent.agentId] = {};
 
         console.log("addWSAgent=>", wsAgent);
     });
     remoteAgent.on("closeWSAgent", wsAgent => {
         let target = xdata.remotersList.find(e => e.agentId === wsAgent.agentId);
         target && target.remove();
+
+        xdata.remoterConsoles[wsAgent.agentId].remove();
+        xdata.remoterData[wsAgent.agentId].remove();
 
         console.log("closeWSAgent=>", wsAgent);
     });

@@ -14,6 +14,9 @@ Component(async () => {
     return {
         tag: "ele-frame",
         temp: true,
+        data: {
+            hideBack: true
+        },
         proto: {
             dblTitle() {
                 if (!win) {
@@ -24,6 +27,9 @@ Component(async () => {
                 } else {
                     win.maximize();
                 }
+            },
+            appBack() {
+                this.que("xd-app").back();
             }
         }
     };

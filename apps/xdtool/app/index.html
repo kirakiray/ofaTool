@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>XDTool</title>
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/xd-page-anime.css">
     <script src="js/ofa.js" async></script>
     <script src="js/main.js" async></script>
     <style>
@@ -41,12 +42,18 @@
                 transform: rotate(360deg)
             }
         }
+
+        xd-app {
+            height: 100%;
+        }
     </style>
 </head>
 
 <body>
     <ele-frame>
-        <!-- <xd-page src="js/pages/main/main.js -r" class="main_page"></xd-page> -->
+        <xd-app>
+            <xd-page></xd-page>
+        </xd-app>
     </ele-frame>
 
     <div id="startLoading" class="loading_con">

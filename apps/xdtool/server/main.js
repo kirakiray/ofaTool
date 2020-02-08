@@ -40,6 +40,12 @@ exports.register = async (opts) => {
     // 离线端数据
     xdata.remotersList = {}
 
+    // 记录console数据
+    xdata.remoterConsoles = {};
+
+    // 记录常规数据
+    xdata.remoterData = {};
+
     // 静态服务器初始化服务
     clearCalls.push(initStaticServer({ xdata, pureServer }));
 

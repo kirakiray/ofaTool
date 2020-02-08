@@ -3,6 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
@@ -11,7 +14,64 @@
 </head>
 
 <body>
+    asdasd2
+    <script>
+        setTimeout(() => {
+            class A {
+                constructor() {
+                    // this.a = "I am a";
+                    this.a_obj = {
+                        val: "I am a_obj"
+                    };
+                }
 
+                a = "I am a";
+
+                get a_pri() {
+                    return "aaaaaaaaa_pri";
+                }
+
+                set a_seter(v) {
+                    this.haha = v;
+                }
+            }
+
+            class A2 extends A {
+                constructor() {
+                    super();
+                    this.a2 = "I am a2";
+                }
+
+                get a2_pri() {
+                    return "a2_priiiiiiii";
+                }
+            }
+
+            let test_a = new A2();
+
+            Object.defineProperties(test_a, {
+                a_pri2: {
+                    value: "a_pri222222222222"
+                }
+            });
+
+            console.log(test_a);
+
+            let b = { v1: "bbb1" };
+            let b2 = Object.create(b);
+            Object.assign(b2, { v2: "bbbbbb2" });
+            let b3 = Object.create(b2);
+            Object.assign(b3, { v3: "bbbbbb33" });
+            console.log(b3);
+
+            console.log(123123123);
+
+            console.log("奥术大师大多");
+
+            console.log(11111111, "asdasdasdasd");
+
+        }, 1000);
+    </script>
 </body>
 
 </html>

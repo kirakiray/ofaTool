@@ -26,6 +26,7 @@
 .xt_right {
     position: relative;
     flex: 1;
+    overflow-y: auto;
 }
 
 .xt_right_block {

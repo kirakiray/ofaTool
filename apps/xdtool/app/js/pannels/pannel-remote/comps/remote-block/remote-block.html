@@ -1,7 +1,21 @@
 <div class="remote_block">
-    <div class="remote_block_avatar"></div>
+    <div class="remote_block_avatar"> </div>
     <div class="remote_block_info">
+        <!-- <div class="href_info">
+            {{ua}}
+        </div> -->
         <div class="name">{{name}}</div>
-        <div class="href_info">{{href}}</div>
+        <div class="href_info">
+            <div class="ellips_line"><span class="line_title">访问链接:</span>{{href}}</div>
+        </div>
+        <div class="href_info">
+            <div class="ellips_line">
+                <span class="info_block">
+                    <span class="line_title">系统:</span>{{sys}} {{sysVer}}</span>
+                <span class="info_block">
+                    <span class="line_title">浏览器:</span>{{bro}} {{broVer}}
+                </span>
+            </div>
+        </div>
     </div>
 </div>

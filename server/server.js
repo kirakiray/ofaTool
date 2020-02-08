@@ -37,33 +37,41 @@ function openSoftware(opts) {
     // 设置静态目录
     pureServer.setStatic(`/${softAfterName}/`, process.cwd() + `/apps/${opts.name}/app/`);
 
-    console.log(`http://localhost:${pureServer.port}/${softAfterName}/index.html?pageid=${getRandomId()}`);
+    let softwareUrl = `http://localhost:${pureServer.port}/${softAfterName}/index.html`;
 
-    // 打开相应app页面
-    // let win = new BrowserWindow({
-    //     width: 720,
-    //     height: 480,
-    //     minWidth: 600,
-    //     minHeight: 400,
-    //     frame: false,
-    //     titleBarStyle: "hiddenInset",
-    //     webPreferences: {
-    //         nodeIntegration: true
-    //     }
-    // });
+    console.log(`${softwareUrl}?pageid=${getRandomId()}`);
 
-    // win.loadURL(`http://localhost:${pureServer.port}/${softAfterName}/index.html?pageid=${getRandomId()}`);
+    // 获取所有窗口，是不是已经关闭了
+    let allWins = BrowserWindow.getAllWindows();
+    let hasThisWin;
 
-    // // 打开开发者工具
-    // win.webContents.openDevTools()
+    allWins.forEach(e => {
+        let url = e.getURL();
 
-    // // 关闭后注销函数
-    // win.on("close", e => {
-    //     // 注销函数
-    //     serverControl.unregister({
-    //         pureServer, sAgent
-    //     });
-    // });
+        if ((url.indexOf(softwareUrl) > -1)) {
+            hasThisWin = true;
+        }
+    });
+
+    if (!hasThisWin) {
+        // 打开相应app页面
+        let win = new BrowserWindow({
+            width: 720,
+            height: 480,
+            minWidth: 600,
+            minHeight: 400,
+            frame: false,
+            titleBarStyle: "hiddenInset",
+            webPreferences: {
+                nodeIntegration: true
+            }
+        });
+
+        win.loadURL(`${softwareUrl}?pageid=${getRandomId()}`);
+
+        // 打开开发者工具
+        win.webContents.openDevTools();
+    }
 }
 
 openSoftware({

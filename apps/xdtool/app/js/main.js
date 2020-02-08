@@ -7,7 +7,7 @@ drill = async (drill) => {
     window.stanz = $.xdata;
 
     // 加入页面
-    $('ele-frame').push(`<xd-page src="js/pages/main/main.js -r" class="main_page"></xd-page>`);
+    $('ele-frame xd-page').src = "js/pages/main/main.js";
 
     // 加载基础库
     await load("util/ofaStorage", "util/StanzClientAgent");
@@ -17,6 +17,15 @@ drill = async (drill) => {
 
     // 初始加载stanz库
     let stData = await load("data/stData");
+
+    // 判断页面是否显示返回按钮
+    $("xd-app").on("navigate", (e, d) => {
+        if (d.data && d.data.tag == "remote-block") {
+            $('ele-frame').hideBack = false;
+        } else {
+            $('ele-frame').hideBack = true;
+        }
+    });
 
     // 慢行1秒
     setTimeout(() => {

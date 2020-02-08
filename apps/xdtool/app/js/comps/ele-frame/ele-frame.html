@@ -13,6 +13,7 @@
     }
 
     .top {
+        display: flex;
         height: 35px;
         line-height: 35px;
         font-size: 12px;
@@ -20,6 +21,37 @@
         background-color: #fff;
         -webkit-app-region: drag;
         user-select: none;
+    }
+
+    .top_tools {
+        margin-left: 100px;
+        width: 150px;
+        height: 35px;
+    }
+
+    .top_btn {
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        font-family: iconfont;
+        -webkit-app-region: no-drag;
+        transition: all ease .3s;
+    }
+
+    .top_btn[hide="true"] {
+        pointer-events: none;
+        opacity: 0;
+        width: 0;
+        -webkit-app-region: drag;
+    }
+
+    .top_btn:hover {
+        background-color: #fafafa;
+    }
+
+    .title_name {
+        flex: 1;
+        margin-right: 250px;
     }
 
     .main {
@@ -39,7 +71,12 @@
 </style>
 
 <div class="container">
-    <div class="top" @dblclick="dblTitle">XDTool</div>
+    <div class="top" @dblclick="dblTitle">
+        <div class="top_tools">
+            <div class="top_btn" @click="appBack" :hide="hideBack">&#xe60a;</div>
+        </div>
+        <div class="title_name">XDTool</div>
+    </div>
     <div class="main">
         <div class="inner_main">
             <slot></slot>
