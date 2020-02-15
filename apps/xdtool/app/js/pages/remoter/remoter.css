@@ -32,7 +32,7 @@
 }
 
 .info_text {
-    user-select: all;
+    user-select: text;
 }
 
 .consoleList {

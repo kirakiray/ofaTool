@@ -12,7 +12,7 @@
         return {
             tag: "pannel-info",
             temp: true,
-            link: true,
+            css: true,
             data: {
                 // 当前项目地址
                 projectUrl: "",

@@ -2,7 +2,7 @@ Component(async (load) => {
     return {
         tag: "remote-block",
         temp: true,
-        link: true,
+        css: true,
         data: {
             name: "(empty))",
             href: "",

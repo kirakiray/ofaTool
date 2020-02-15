@@ -1,6 +1,6 @@
 define(async (load) => {
     // 加载主体框架
-    await load('pannels/pannel-info -pack', 'pannels/pannel-file -pack', "pannels/pannel-p-overview -pack", "pannels/pannel-config -pack", "comps/slide-frame -pack","pannels/pannel-remote -pack");
+    await load('pannels/pannel-info -pack', 'pannels/pannel-file -pack', "pannels/pannel-p-overview -pack", "pannels/pannel-config -pack", "comps/slide-frame -pack", "pannels/pannel-remote -pack", "pannels/pannel-remote-info -pack");
 
     let storage = await load("util/ofaStorage");
 
@@ -21,21 +21,21 @@ define(async (load) => {
 
     return {
         temp: true,
-        link: true,
+        css: true,
         data: {
             // 是否隐藏左边工具栏
-            hideFrameLeft: true,
+            hideFrameLeft: false,
             // 激活中的pannel
-            activePannel: "projects"
+            activePannel: "remoter"
         },
         watch: {},
         ready() {
             // 在有dir的情况下可以切换标签
-            stData.projectData.watch("dir", (e, val) => {
-                setTimeout(() => {
-                    this.hideFrameLeft = !val;
-                }, 100);
-            });
+            // stData.projectData.watch("dir", (e, val) => {
+            //     setTimeout(() => {
+            //         this.hideFrameLeft = !val;
+            //     }, 100);
+            // });
 
             // 鼠标控制文件区域
             const xtLeft = this.queShadow(".xt_left");

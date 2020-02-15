@@ -1,10 +1,12 @@
 <slide-frame :active="activePannel" :hideleft="hideFrameLeft">
-    <div slide-frame-btn="one" slot="btn">
+    <div slide-frame-btn="one" slot="btn" style="display:none;">
         <span class="iconfont" style="font-size:20px;">&#xe600;</span>
     </div>
-    <div slide-frame-btn="projects" slot="bottomBtn">
-        <span class="iconfont">&#xe603;</span>
+    <div slide-frame-btn="remoter" slot="btn">
+        <span class="iconfont">&#xe66b;</span>
     </div>
+    <div slide-frame-btn="projects" slot="bottomBtn" style="display:none;">
+        <span class="iconfont">&#xe603;</span>
     </div>
     <div slide-frame-btn="config" slot="bottomBtn">
         <span class="iconfont">&#xe609;</span>
@@ -17,13 +19,19 @@
             </div>
             <div class="xt_right">
                 <div class="xt_right_block">
-                    <pannel-remote></pannel-remote>
+                    <!-- <pannel-remote></pannel-remote> -->
                 </div>
             </div>
         </div>
     </div>
     <div class="p_overview" slide-frame-page="projects">
         <pannel-p-overview xv-tar="pOverview"></pannel-p-overview>
+    </div>
+    <div class="p_overview" slide-frame-page="remoter">
+        <div class="remoter_container" style="background-color: #f5f5f5;">
+            <pannel-remote-info style="margin:0 0 3px 3px;"></pannel-remote-info>
+            <pannel-remote style="margin-left:3px;flex:1;"></pannel-remote>
+        </div>
     </div>
     <div class="p_overview" slide-frame-page="config">
         <pannel-config></pannel-config>

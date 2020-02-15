@@ -4,7 +4,7 @@ Component(async (load) => {
     return {
         tag: "pannel-console",
         temp: true,
-        link: true,
+        css: true,
         ready() {
             
         }

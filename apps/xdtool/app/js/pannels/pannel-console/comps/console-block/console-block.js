@@ -153,7 +153,7 @@ Component(async (load) => {
     return {
         tag: "console-block",
         temp: true,
-        link: true,
+        css: true,
         data: {
             methodName: "",
             args: "",
@@ -186,18 +186,24 @@ Component(async (load) => {
                 if (!stack) {
                     return;
                 }
-                // 谷歌系的报错
-                if (/^ReferenceError/.test(stack)) {
-                    // 去最后一行的字符串
-                    let lastD = stack.split(/\n/).slice(-1)[0];
-                    this.posi = lastD.match(/http.+/)[0];
-                }
+                // 通用模式
+                let arr = stack.match(/http.+/g);
+                this.posi = arr.slice(-1)[0];
             },
             posi(e, posi) {
                 if (!posi) {
                     return;
                 }
-                this.posiStr = posi.match(/.+\/(.+)/)[1];
+                let posStr = posi.match(/.+\/(.+)/)[1];
+
+                // 参数屏蔽
+                if (/\?/.test(posStr)) {
+                    posStr = posStr.replace(/\?.+(:\d*:\d*)$/, (...args) => {
+                        return "?..." + args[1];
+                    })
+                }
+
+                this.posiStr = posStr;
             }
         }
     };

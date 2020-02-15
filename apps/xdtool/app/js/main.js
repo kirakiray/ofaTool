@@ -6,6 +6,8 @@ drill = async (drill) => {
 
     window.stanz = $.xdata;
 
+    ofa.globalcss = "css/global.css";
+
     // 加入页面
     $('ele-frame xd-page').src = "js/pages/main/main.js";
 

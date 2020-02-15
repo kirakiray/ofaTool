@@ -6,7 +6,7 @@ Component(async (load) => {
     return {
         tag: "pannel-remote",
         temp: true,
-        link: true,
+        css: true,
         ready() {
             // 获取离线端数据并设置
             stData.remotersList.sync(this.$list, null, true);

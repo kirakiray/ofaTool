@@ -39,7 +39,15 @@ const remoteInit = ({ xdata, stanzAgent }) => {
         console.log("ondata =>", d);
     });
 
+    // 属于刷新页面的列表，只会存在一次
+    const isRefreshList = new Set();
+
     remoteAgent.on("addWSAgent", wsAgent => {
+        if (xdata.remoterConsoles[wsAgent.agentId]) {
+            isRefreshList.add(wsAgent.agentId);
+            return;
+        }
+
         xdata.remotersList.push({
             tag: "remote-block",
             agentId: wsAgent.agentId,
@@ -54,6 +62,11 @@ const remoteInit = ({ xdata, stanzAgent }) => {
         console.log("addWSAgent=>", wsAgent);
     });
     remoteAgent.on("closeWSAgent", wsAgent => {
+        if (isRefreshList.has(wsAgent.agentId)) {
+            isRefreshList.delete(wsAgent.agentId);
+            return;
+        }
+
         let target = xdata.remotersList.find(e => e.agentId === wsAgent.agentId);
         target && target.remove();
 

@@ -5,7 +5,7 @@ define(async (load) => {
 
     return {
         temp: true,
-        link: true,
+        css: true,
         data: {
             ua: "ua",
             // 地址
@@ -42,6 +42,7 @@ define(async (load) => {
                     if (!consolesData) {
                         // 窗口关闭
                         this.$closeTips.display = "";
+                        timer = false;
                         return;
                     }
 
@@ -50,13 +51,19 @@ define(async (load) => {
                         return;
                     }
 
+                    if (this._oldConsoleData) {
+                        this._oldConsoleData.unsync(this.$pannelConsole);
+                        this._oldConsoleData = null;
+                        this.$pannelConsole.empty();
+                    }
+
                     if (consolesData) {
                         consolesData.sync(this.$pannelConsole, null, true);
                     }
 
                     // 挂在旧数据
                     this._oldConsoleData = consolesData;
-
+                    this.$closeTips.display = "none";
                     timer = false;
                 }, 100);
             }, true);

@@ -7,21 +7,37 @@
   background-color: #fff;
   font-size: 12px;
 }
+.con {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
 .title {
   height: 36px;
   line-height: 36px;
   border-bottom: #e9e9e9 solid 1px;
 }
 .list {
+  position: relative;
+  flex: 1;
   margin-top: 5px;
   min-height: 60px;
+  overflow-y: auto;
 }
-.list:empty {
+.list .inner_list {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.list .inner_list:empty {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.list:empty:after {
+.list .inner_list:empty:after {
   display: block;
   color: #aaa;
   content: "暂无打开的网页";

@@ -54,8 +54,12 @@ const getIPAddress = () => {
 }
 
 // 初始化项目静态逻辑
-exports.initStaticServer = ({xdata, pureServer}) => {
+exports.initStaticServer = ({ xdata, pureServer }) => {
     initStatic(xdata, pureServer);
+
+    // 设置ip地址
+    xdata.ip = getIPAddress();
+    xdata.port = pureServer.port;
 
     xdata.watch(e => {
         initStatic(xdata, pureServer);

@@ -35,7 +35,7 @@ Component(async (load) => {
     return {
         tag: "pannel-file",
         temp: true,
-        link: true,
+        css: true,
         data: {
             dirName: "文件"
         },

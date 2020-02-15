@@ -1,7 +1,7 @@
 Component({
     tag: "slide-frame",
     temp: true,
-    hostlink: "./slide-frame-host.css",
+    hostcss: "./slide-frame-host.css",
     proto: {
         // 更新左边图标
         refreshLeftBtns() {

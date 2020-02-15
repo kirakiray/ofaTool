@@ -2,7 +2,7 @@ Component(async (load) => {
     return {
         tag: "file-block",
         temp: true,
-        link: true,
+        css: true,
         attrs: ["name", "isDir"],
         data: {
             // 文件名

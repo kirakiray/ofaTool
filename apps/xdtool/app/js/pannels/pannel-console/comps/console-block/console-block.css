@@ -5,6 +5,19 @@
     padding: 4px 4px 4px 0;
     font-family: monospace;
     border-bottom: #f0f0f0 solid 1px;
+    animation: block_anime ease .3s;
+}
+
+@keyframes block_anime {
+    0% {
+        transform: translate(0, 10px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
 }
 
 .outer_con {
@@ -33,6 +46,7 @@
     box-shadow: rgba(0, 0, 0, .1) 0 0 5px;
     opacity: 1;
     user-select: text;
+    line-height: 1.6em;
 }
 
 .position:hover .posi_con {
@@ -55,6 +69,7 @@
 }
 
 .obj_content .obj_value {
+    position: relative;
     display: none;
 }
 

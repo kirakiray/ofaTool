@@ -16,7 +16,7 @@
         return {
             tag: "pannel-p-overview",
             temp: true,
-            link: true,
+            css: true,
             data: {
                 // 是否隐藏loading
                 hideLoading: true,

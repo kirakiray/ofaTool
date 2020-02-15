@@ -1,9 +1,25 @@
 (async () => {
+    // 获取url参数
+    function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) { return pair[1]; }
+        }
+        return (false);
+    }
+
     // 当前窗口的agentId
-    let aid = "";
+    let aid = getQueryVariable("agentId");
+
+    if (!aid) {
+        history.pushState({}, "", "?agentId=a" + Math.random().toString(32).slice(2))
+    }
 
     let xdAgent = await stanzAgent(`ws://${location.hostname}:9866`, {
-        id: "xdtool_remote"
+        id: "xdtool_remote",
+        agentId: aid
     });
 
     window.xdAgent = xdAgent;

@@ -4,7 +4,7 @@ Component(async (load) => {
     return {
         tag: "pannel-config",
         temp: true,
-        link: true,
+        css: true,
         data: {
             showHiddenFile: false
         },
