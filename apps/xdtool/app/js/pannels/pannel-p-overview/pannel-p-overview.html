@@ -11,8 +11,12 @@
             </select>
         </div>
     </div>
-    <div class="overview_slot">
-        <slot></slot>
-        <div class="add_btn" @click="clickAddBtn" title="添加新项目">+</div>
+    <div class="overview_main">
+        <div class="over_right">
+            <div class="add_btn" @click="clickAddBtn">添加项目</div>
+        </div>
+        <div class="pj_con_list">
+            <slot></slot>
+        </div>
     </div>
 </div>

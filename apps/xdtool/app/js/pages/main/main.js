@@ -23,19 +23,15 @@ define(async (load) => {
         temp: true,
         css: true,
         data: {
-            // 是否隐藏左边工具栏
-            hideFrameLeft: false,
             // 激活中的pannel
             activePannel: "remoter"
         },
         watch: {},
         ready() {
             // 在有dir的情况下可以切换标签
-            // stData.projectData.watch("dir", (e, val) => {
-            //     setTimeout(() => {
-            //         this.hideFrameLeft = !val;
-            //     }, 100);
-            // });
+            stData.projectData.watch("dir", (e, val) => {
+                this.queShadow('[slide-frame-btn="one"]').display = "";
+            });
 
             // 鼠标控制文件区域
             const xtLeft = this.queShadow(".xt_left");

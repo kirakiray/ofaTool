@@ -7,6 +7,11 @@ Component(async (load) => {
         tag: "pannel-remote",
         temp: true,
         css: true,
+        data: {
+            // 列表高度固定
+            listAutoHeight: false
+        },
+        attrs: ["listAutoHeight"],
         ready() {
             // 获取离线端数据并设置
             stData.remotersList.sync(this.$list, null, true);

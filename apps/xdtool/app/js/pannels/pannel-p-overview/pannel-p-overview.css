@@ -5,12 +5,13 @@
 }
 
 .overview_con {
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
     padding-top: 20px;
     padding-left: 20px;
     width: 100%;
     height: 100%;
-    overflow-y: auto;
 }
 
 .title {
@@ -22,6 +23,7 @@
 
 .sort_line {
     display: flex;
+    padding-left: 200px;
     color: rgb(114, 114, 114);
     line-height: 30px;
     font-size: 12px;
@@ -45,22 +47,38 @@
     cursor: pointer;
 }
 
-.overview_slot {
+.overview_main {
+    flex: 1;
     display: flex;
-    flex-wrap: wrap;
+    overflow-y: auto;
+    /* flex-wrap: wrap; */
+}
+
+.pj_con_list {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding-bottom: 20px;
+}
+
+.over_right {
+    width: 200px;
 }
 
 .add_btn {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 14px 14px 0 0;
-    width: 120px;
-    height: 120px;
-    font-size: 40px;
+    width: 150px;
+    margin: 0 10px;
+    height: 30px;
+    line-height: 30px;
+    background-color: #eee;
+    font-size: 12px;
     font-weight: lighter;
-    order: 20000000;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 .add_btn:hover {

@@ -22,6 +22,8 @@
 
 
 .pannel {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
     padding: 0 10px;
     /* margin: 10px; */

@@ -1,18 +1,9 @@
 Component(async (load) => {
     await load("./comps/file-block -pack");
 
-    let [rightmenu, dialog] = await load("command/rightmenu -pack", "command/dialog -pack");
+    let [rightmenu, getRightMenu] = await load("command/rightmenu -pack", "util/getRightMenu");
 
     let stData = await load("data/stData");
-
-    let shell, clipboard;
-    try {
-        let elec = require('electron');
-        shell = elec.shell;
-        clipboard = elec.clipboard;
-    } catch (e) {
-        console.warn("require shell error => ", e);
-    }
 
     // 更新文件目录树状态
     const refreshList = (block, hideExprs) => {
@@ -78,40 +69,12 @@ Component(async (load) => {
             // 监听右键菜单
             this.$fileCon.on("contextmenu", `file-block`, e => {
                 let { delegateTarget } = e;
-                rightmenu([{
-                    label: `在Finder显示 ${delegateTarget.name}`,
-                    click() {
-                        let dir = stData.projectData.dir + '/' + delegateTarget.getPath();
 
-                        shell && shell.showItemInFolder(dir);
-                    }
-                }, {
-                    label: `浏览器打开`,
-                    click() {
-                        let url = stData.projects.seek("[active=1]")[0].webRootUrl + delegateTarget.getPath();
+                let rightMenuData = getRightMenu({
+                    fileBlock: delegateTarget
+                });
 
-                        shell.openExternal(url);
-
-                    }
-                },
-                { type: "separator" },
-                {
-                    label: "二维码",
-                    click() {
-                        let url = stData.projects.seek("[active=1]")[0].webRootUrl + delegateTarget.getPath();
-                        dialog({
-                            type: "ercode",
-                            text: url
-                        });
-                    }
-                }, {
-                    label: "复制链接",
-                    click() {
-                        let url = stData.projects.seek("[active=1]")[0].webRootUrl + delegateTarget.getPath();
-                        clipboard.writeText(url);
-                        dialog("复制链接成功");
-                    }
-                }], e.originalEvent);
+                rightmenu(rightMenuData, e.originalEvent);
             });
         }
     };

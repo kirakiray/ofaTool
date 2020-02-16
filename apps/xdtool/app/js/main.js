@@ -22,7 +22,7 @@ drill = async (drill) => {
 
     // 判断页面是否显示返回按钮
     $("xd-app").on("navigate", (e, d) => {
-        if (d.data && d.data.tag == "remote-block") {
+        if ($('xd-app').currentPages.length > 1) {
             $('ele-frame').hideBack = false;
         } else {
             $('ele-frame').hideBack = true;

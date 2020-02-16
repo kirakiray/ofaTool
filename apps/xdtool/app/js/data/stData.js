@@ -1,6 +1,6 @@
 drill.define(async (load) => {
-    let xdAgent = await stanzAgent("ws://localhost:9866", "100");
-    // let xdAgent = await stanzAgent("ws://192.168.0.106:9866", "100");
+    let xdAgent = await stanzAgent(`ws://${location.hostname}:9866`, "100");
+    // let xdAgent = await stanzAgent(`ws://localhost:9866`, "100");
 
     let stData = window.stData = xdAgent.xdata;
 

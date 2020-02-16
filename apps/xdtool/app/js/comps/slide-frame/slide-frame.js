@@ -10,11 +10,9 @@ Component({
     },
     data: {
         // 激活中的id
-        active: 0,
-        // 左边切换栏是否隐藏
-        hideleft: false
+        active: 0
     },
-    attrs: ["active", "hideleft"],
+    attrs: ["active"],
     watch: {
         active(e, id) {
             let targetBtn = this.que(`[slide-frame-btn="${id}"]`);
