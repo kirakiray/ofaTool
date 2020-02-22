@@ -1,4 +1,8 @@
 ((glo) => {
+    if (glo.stanzAgent) {
+        return
+    }
+    
     class StanzClientAgent {
         constructor() {
             Object.assign(this, {
@@ -50,7 +54,7 @@
                 switch (d.type) {
                     case "init":
                         if (typeof stanz === "undefined") {
-                            console.log("stanz is undefined!!!!!!!!!!!!!!!!!!!!!!!!!");
+                            console.warn("stanz is undefined!!!!!!!!!!!!!!!!!!!!!!!!!");
                             this.loaded = true;
                             this.onload()
                             return;
@@ -86,7 +90,6 @@
                         break;
                     case "upxdata":
                         // 数据同步
-                        console.log("同步数据来了");
                         d.data.forEach(trend => {
                             historyTrends.add(trend.mid);
                             this.xdata.entrend(trend);

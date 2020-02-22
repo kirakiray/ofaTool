@@ -58,12 +58,19 @@ define(async (load) => {
                     label: "复制链接（remoter）",
                     click() {
                         console.log("inspect 代码");
+                        let url = stData.projects.seek("[active=1]")[0].webRootUrl + fileBlock.getPath() + `?__addremote=1`;
+                        clipboard.writeText(url);
+                        dialog("复制链接（remoter）成功");
                     }
                 },
                 {
                     label: "二维码（remoter）",
                     click() {
-                        console.log("inspect 代码");
+                        let url = stData.projects.seek("[active=1]")[0].webRootUrl + fileBlock.getPath() + `?__addremote=1`;
+                        dialog({
+                            type: "ercode",
+                            text: url
+                        });
                     }
                 });
         }

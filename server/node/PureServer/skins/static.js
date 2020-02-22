@@ -33,6 +33,8 @@ module.exports = {
                 dirPath
             });
         },
+        // 访问file文件返回callback
+        judges: new Set(),
         // 去除路径
         removeStatic(dir) {
             this._static.delete(dir);
@@ -88,6 +90,10 @@ module.exports = {
                     ctx.gzip = true;
 
                     ctx.body = file;
+
+                    if (this.judges.size) {
+                        this.judges.forEach(f => f(ctx));
+                    }
                 }
 
                 // 设置200状态

@@ -35,3 +35,18 @@
     border-bottom: #e9e9e9 solid 1px;
     font-size: 12px;
 }
+
+.iconfont {
+    font-family: iconfont;
+    font-size: 17px;
+}
+
+.p_overview {
+    box-sizing: border-box;
+    z-index: 10;
+    left: 2px;
+    top: 0;
+    width: calc(100% - 2px);
+    height: 100%;
+    background-color: #fff;
+}

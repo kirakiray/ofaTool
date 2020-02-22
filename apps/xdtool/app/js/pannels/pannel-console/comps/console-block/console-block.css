@@ -2,13 +2,11 @@
     display: block;
     line-height: 26px;
     font-size: 12px;
-    padding: 4px 4px 4px 0;
     font-family: monospace;
-    border-bottom: #f0f0f0 solid 1px;
-    animation: block_anime ease .3s;
+    /* animation: block_anime ease .3s; */
 }
 
-@keyframes block_anime {
+/* @keyframes block_anime {
     0% {
         transform: translate(0, 10px);
         opacity: 0;
@@ -18,13 +16,62 @@
         transform: translate(0, 0);
         opacity: 1;
     }
+} */
+.bottom_line {
+    margin: 0 10px;
+    height: 1px;
+    background-color: #f0f0f0;
 }
 
 .outer_con {
     display: flex;
+    padding: 4px 10px;
 }
 
+.outer_con:before {
+    margin-right: 6px;
+}
+
+.outer_con[type="warn"] {
+    background-color: rgba(255, 213, 0, 0.12);
+}
+
+.iscommand_before {
+    display: none;
+    margin-right: 8px;
+    font-size: 10px;
+    color: rgb(110, 110, 110);
+    font-family: iconfont;
+}
+
+[iscommand="true"] .iscommand_before {
+    display: block;
+}
+
+.outer_con[type="warn"] .outer_icon:before {
+    display: block;
+    font-family: iconfont;
+    color: rgb(255, 213, 0);
+    content: "\e60c";
+    font-size: 14px;
+}
+
+.outer_con[type="error"] {
+    background-color: rgba(255, 21, 0, 0.075);
+}
+
+.outer_con[type="error"] .outer_icon:before {
+    display: block;
+    font-family: iconfont;
+    color: rgb(255, 21, 0);
+    content: "\e614";
+}
+
+
 .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     flex: 1;
 }
 
@@ -53,11 +100,22 @@
     display: block;
 }
 
-.line {
+.line,
+.line2 {
+    align-self: flex-start;
+    display: block;
     position: relative;
     line-height: 26px;
-    padding-left: 14px;
+    padding: 0 8px 0 14px;
     user-select: text;
+}
+
+.line2 {
+    padding-left: 2px;
+}
+
+.line .line {
+    display: block;
 }
 
 .line.putaway>.sanjiao {
@@ -94,7 +152,7 @@
     position: absolute;
     z-index: 2;
     left: -10px;
-    top: 0;
+    top: 1px;
     width: 26px;
     height: 20px;
 }
@@ -157,6 +215,10 @@
     color: #242424;
 }
 
+.color_gray {
+    color: #797979;
+}
+
 .color_string {
     color: #b22d28;
 }
@@ -167,5 +229,5 @@
 
 .obj_content {
     display: block;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }

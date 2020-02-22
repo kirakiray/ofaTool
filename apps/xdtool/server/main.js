@@ -5,7 +5,9 @@ const getRandomId = () => Math.random().toString(32).substr(2);
 const { initStaticServer } = require("./task/initStaticServer");
 const { initOpenDir } = require("./task/openDir");
 const { remoteInit } = require("./task/remoteInit");
+const addRemoter = require("./task/addRemoter");
 
+// 需要运行的清理函数
 const clearCalls = [];
 
 // 注册函数
@@ -53,7 +55,10 @@ exports.register = async (opts) => {
     clearCalls.push(initOpenDir({ xdata, pureServer }));
 
     // 初始化离线调试对象
-    clearCalls.push(remoteInit({ xdata, stanzAgent }));
+    clearCalls.push(remoteInit({ stanzAgent, sAgent }));
+
+    // 添加remoter代码
+    pureServer.judges.add(addRemoter);
 }
 
 // 注销函数
@@ -63,4 +68,6 @@ exports.unregister = ({
     clearCalls.forEach(e => e());
 
     clearCalls.length = 0;
+
+    pureServer.judges.delete(addRemoter);
 }

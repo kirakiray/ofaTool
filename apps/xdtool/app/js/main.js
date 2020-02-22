@@ -12,7 +12,7 @@ drill = async (drill) => {
     $('ele-frame xd-page').src = "js/pages/main/main.js";
 
     // 加载基础库
-    await load("util/ofaStorage", "util/StanzClientAgent");
+    await load("util/ofaStorage", "remoter/StanzClientAgent -r");
 
     // 载入主体frame
     await load('comps/ele-frame -pack');

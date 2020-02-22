@@ -11,10 +11,14 @@
     }
 
     // 当前窗口的agentId
-    let aid = getQueryVariable("agentId");
+    let aid = getQueryVariable("__agentId");
 
     if (!aid) {
-        history.pushState({}, "", "?agentId=a" + Math.random().toString(32).slice(2))
+        let oldSearch = location.search;
+        if (oldSearch) {
+            oldSearch = oldSearch.replace(/^\?/, "");
+        }
+        history.pushState({}, "", `?${oldSearch}&__agentId=a` + Math.random().toString(32).slice(2))
     }
 
     let xdAgent = await stanzAgent(`ws://${location.hostname}:9866`, {
@@ -38,6 +42,24 @@
         switch (type) {
             case "initClient":
                 aid = agentId;
+                break;
+            case "runcode":
+                let { runcode } = d;
+                if (runcode) {
+                    let err, retrunValue;
+                    try {
+                        retrunValue = eval(runcode);
+                    } catch (e) {
+                        err = e;
+                    }
+
+                    xdAgent.send({
+                        type: "runnedCode",
+                        retrunValue,
+                        errInfo: err ? err.toString() : undefined,
+                        agentId: aid
+                    });
+                }
                 break;
         }
     });
@@ -84,14 +106,35 @@
         return newObj;
     }
 
+    // 获取虚拟数组方法
+    const getVirArray = (arr) => {
+        let newObj = {
+            _v: arr,
+            cn: arr.constructor.name,
+            t: "array"
+        }
+
+        // 递归原型
+        let { __proto__ } = obj;
+        if (__proto__ !== Object.prototype) {
+            newObj.pt = getVirObject(__proto__);
+        } else {
+            newObj.pt = "";
+        }
+
+        return newObj;
+    }
+
     // ----中转console----
     const old_console = window.console;
     const new_console = Object.create(old_console);
-    ["log"].forEach(methodName => {
+    ["log", "warn", "error"].forEach(methodName => {
         new_console[methodName] = function (...args) {
             // 修正新对象
             let newArgs = args.map(arg => {
-                if (arg instanceof Object) {
+                if (arg instanceof Array) {
+                    return getVirArray(arg);
+                } else if (arg instanceof Object) {
                     return getVirObject(arg);
                 }
                 return arg;

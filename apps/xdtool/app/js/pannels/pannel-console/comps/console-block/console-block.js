@@ -139,14 +139,19 @@ Component(async (load) => {
                 return ele;
             case "number":
                 return $(`
-                    <div class="line">
+                    <div class="line2">
                         <span class="color_num">${objData}</span>
                     </div>`);
             case "string":
                 return $(`
-                    <div class="line">
+                    <div class="line2">
                         <span class="color_string">${objData}</span>
                     </div>`);
+            case "null":
+                return $(`
+                <div class="line2">
+                    <span class="color_gray">null</span>
+                </div>`);
         }
     }
 
@@ -155,6 +160,8 @@ Component(async (load) => {
         temp: true,
         css: true,
         data: {
+            // 是否命令行输入
+            isCommand: false,
             methodName: "",
             args: "",
             // args: `[{"_v":{"a":{"_v":"I am a","wr":true,"en":true,"co":true},"a_obj":{"_v":{"val":{"_v":"I am a_obj","wr":true,"en":true,"co":true}},"cn":"Object","pt":"","wr":true,"en":true,"co":true},"a2":{"_v":1111111,"wr":true,"en":true,"co":true},"a_pri2":{"_v":"a_pri222222222222","wr":false,"en":false,"co":false}},"cn":"A2","pt":{"_v":{"a2_pri":{"_v":"a2_priiiiiiii","en":false,"co":true,"ge":1}},"cn":"A2","pt":{"_v":{"a_pri":{"_v":"aaaaaaaaa_pri","en":false,"co":true,"ge":1},"a_seter":{"en":false,"co":true,"se":1}},"cn":"A","pt":""}}}]`,
@@ -175,7 +182,7 @@ Component(async (load) => {
                 args.forEach(e => {
                     let objEle = createObjectEle(e);
 
-                    this.$container.push(objEle);
+                    objEle && this.$container.push(objEle);
                 });
 
                 this.$container.on("click", ".sanjiao_area", e => {

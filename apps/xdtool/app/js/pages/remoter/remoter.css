@@ -24,7 +24,7 @@
 
 .consoleList {
     position: relative;
-    min-height: 350px;
+    height: 100%;
 }
 
 pannel-console {

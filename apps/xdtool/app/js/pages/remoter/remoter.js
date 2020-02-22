@@ -1,7 +1,7 @@
 define(async (load) => {
     let stData = await load("data/stData");
 
-    await load("pannels/pannel-console -pack");
+    await load("pannels/pannel-console -pack", "comps/slide-frame -pack");
 
     return {
         temp: true,
@@ -15,12 +15,15 @@ define(async (load) => {
             sysVer: "",
             // 浏览器配置
             bro: "",
-            broVer: ""
+            broVer: "",
+            agentId: ""
         },
         watch: {},
         proto: {},
         ready(opts) {
             let { data } = opts;
+
+            this.agentId = data.agentId;
 
             Object.assign(this, {
                 ua: data.ua,
@@ -32,7 +35,7 @@ define(async (load) => {
             });
 
             let timer;
-            stData.remoterConsoles.watch((e, remoterConsoles) => {
+            stData.remoterConsoles.watch(this._oldWatch = (e, remoterConsoles) => {
                 if (timer) { return; }
                 timer = 1;
                 setTimeout(() => {
@@ -65,13 +68,17 @@ define(async (load) => {
                     this._oldConsoleData = consolesData;
                     this.$closeTips.display = "none";
                     timer = false;
-                }, 100);
+                }, 300);
             }, true);
         },
         destory() {
             if (this._oldConsoleData) {
                 this._oldConsoleData.unsync(this.$pannelConsole);
                 this._oldConsoleData = null;
+            }
+
+            if (this._oldWatch) {
+                stData.remoterConsoles.unwatch(this._oldWatch);
             }
         }
     };

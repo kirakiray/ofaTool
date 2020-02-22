@@ -1,5 +1,6 @@
 define(async (load) => {
-    await load("./dialog.css", "../../util/qrcode.min.js");
+    // await load("./dialog.css", "../../util/qrcode.min.js");
+    await load("./dialog.css", "../../util/qrious.min.js");
 
     // 修正dialog_outer
     function fixOuter() {
@@ -70,16 +71,24 @@ define(async (load) => {
                     <div class="ercode_mask"></div>
                     <div class="ercode_dialog">
                         <div class="ercode_img">
+                            <canvas></canvas>
                         </div>
                         <div class="ercode_dialog_name"><span>${defaults.text}</span></div>
                     </div>
                 </div>
                 `);
-                new QRCode(qrcodeEle.que(".ercode_img").ele, {
-                    text: defaults.text,
-                    width: 180,
-                    height: 180
+
+                var qr = new QRious({
+                    element: qrcodeEle.que("canvas").ele,
+                    value: defaults.text,
+                    size: 200
                 });
+
+                // new QRCode(qrcodeEle.que(".ercode_img").ele, {
+                //     text: defaults.text,
+                //     width: 180,
+                //     height: 180
+                // });
                 $('body').push(qrcodeEle);
 
                 qrcodeEle.que(".ercode_mask").on("click", e => {

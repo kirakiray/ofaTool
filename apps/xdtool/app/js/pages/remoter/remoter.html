@@ -1,27 +1,41 @@
-<div class="pannel">
-    <div class="pannel_title">信息</div>
-    <div class="info">
-        <div class="info_line">
-            <div class="info_name">UserAgent：</div>
-            <div class="info_text">{{ua}}</div>
-        </div>
-        <div class="info_line">
-            <div class="info_name">地址：</div>
-            <div class="info_text">{{href}}</div>
-        </div>
-        <div class="info_line">
-            <div class="info_name">操作系统：</div>
-            <div class="info_text">{{sys}} {{sysVer}}</div>
-        </div>
-        <div class="info_line">
-            <div class="info_name">浏览器：</div>
-            <div class="info_text">{{bro}} {{broVer}}</div>
+<slide-frame active="remoteinfo">
+    <div slide-frame-btn="remoteinfo" slot="btn">
+        <span class="iconfont">&#xe6d6;</span>
+    </div>
+    <div slide-frame-btn="console" slot="btn">
+        <span class="iconfont">&#xe6c7;</span>
+    </div>
+
+    <div class="p_overview" slide-frame-page="remoteinfo">
+        <div class="pannel">
+            <div class="pannel_title">信息</div>
+            <div class="info">
+                <div class="info_line">
+                    <div class="info_name">UserAgent：</div>
+                    <div class="info_text">{{ua}}</div>
+                </div>
+                <div class="info_line">
+                    <div class="info_name">地址：</div>
+                    <div class="info_text">{{href}}</div>
+                </div>
+                <div class="info_line">
+                    <div class="info_name">操作系统：</div>
+                    <div class="info_text">{{sys}} {{sysVer}}</div>
+                </div>
+                <div class="info_line">
+                    <div class="info_name">浏览器：</div>
+                    <div class="info_text">{{bro}} {{broVer}}</div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div class="consoleList">
-    <pannel-console xv-tar="pannelConsole"></pannel-console>
-</div>
-<div class="closed_tips" xv-tar="closeTips" style="display:none;">
-    窗口已关闭
-</div>
+    <div class="p_overview" slide-frame-page="console">
+        <div class="consoleList">
+            <pannel-console xv-tar="pannelConsole" :agent-id="agentId" style="height:100%;"></pannel-console>
+        </div>
+        <div class="closed_tips" xv-tar="closeTips" style="display:none;">
+            窗口已关闭
+        </div>
+    </div>
+
+</slide-frame>

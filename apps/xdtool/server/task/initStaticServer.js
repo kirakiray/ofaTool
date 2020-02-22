@@ -1,4 +1,4 @@
-const { getRandowStr } = require("../common");
+const { getRandowStr, getIPAddress } = require("../common");
 
 // 是否已经存在当前映射目录
 const staticMap = new Map();
@@ -20,7 +20,6 @@ const initStatic = async (xdata, pureServer) => {
         if (!staticMap.has(e.path)) {
             let mapKey = `/s_${getRandowStr()}/`;
             pureServer.setStatic(mapKey, e.path + "/");
-            // let rootUrl = `http://${ip}:9876${mapKey}`;
             let rootUrl = `http://${ip}:${pureServer.port}${mapKey}`;
             e.webRootUrl = rootUrl;
 
@@ -35,22 +34,6 @@ const initStatic = async (xdata, pureServer) => {
     });
 
     initStaticTimer = false;
-}
-
-// 获取ip地址
-const getIPAddress = () => {
-    const interfaces = require('os').networkInterfaces(); // 在开发环境中获取局域网中的本机iP地址
-    let IPAddress = '';
-    for (var devName in interfaces) {
-        var iface = interfaces[devName];
-        for (var i = 0; i < iface.length; i++) {
-            var alias = iface[i];
-            if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
-                IPAddress = alias.address;
-            }
-        }
-    }
-    return IPAddress;
 }
 
 // 初始化项目静态逻辑
