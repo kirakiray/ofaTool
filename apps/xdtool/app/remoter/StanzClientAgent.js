@@ -2,7 +2,7 @@
     if (glo.stanzAgent) {
         return
     }
-    
+
     class StanzClientAgent {
         constructor() {
             Object.assign(this, {
@@ -133,7 +133,8 @@
 
     // 转换数据
     const transData = (obj) => {
-        return JSON.stringify(obj);
+        let s = JSON.stringify(obj);
+        return s;
     }
 
     glo.stanzAgent = (url, id) => {

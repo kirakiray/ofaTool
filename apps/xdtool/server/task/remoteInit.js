@@ -29,12 +29,14 @@ const remoteInit = ({ stanzAgent, sAgent }) => {
                 break;
             case "console":
                 // 中转console指令
-                xdata.remoterConsoles[wsAgent.agentId].push({
+                let obj = {
                     tag: "console-block",
                     methodName: data.methodName,
                     args: JSON.stringify(data.args),
                     stack: data.stack
-                });
+                };
+
+                xdata.remoterConsoles[wsAgent.agentId].push(obj);
                 break;
             case "runnedCode":
                 // 跑完console返回的东西

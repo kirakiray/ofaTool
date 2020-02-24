@@ -9,10 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="jquery-3.4.1.js"></script>
 </head>
 
 <body>
-    asdasd2
+    <div class="testele">asdasd2</div>
     <script>
         setTimeout(() => {
             class A {
@@ -65,6 +66,11 @@
             console.log("奥术大师大多");
 
             console.log(11111111, "asdasdasdasd");
+
+            // 打印复杂元素
+            setTimeout(() => {
+                console.log("testele=>", $('.testele'));
+            }, 1000);
 
         }, 1000);
     </script>

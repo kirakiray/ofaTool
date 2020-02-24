@@ -76,7 +76,30 @@
             let valueDesc = descObj[key];
             let value = obj[key];
 
-            if (value instanceof Object) {
+            // let value;
+            // try {
+            //     value = obj[key]
+            // } catch (e) {
+            //     debugger
+            // }
+
+            if (value === document) {
+                vObj[key] = {
+                    t: "e",
+                    _v: "#documnet"
+                };
+            } else if (value instanceof Element) {
+                vObj[key] = {
+                    t: "e",
+                    _v: value.constructor.name
+                };
+            } else if (value instanceof Function) {
+                let mArr = value.toString().match(/\(.+?\)/);
+                vObj[key] = {
+                    t: "f",
+                    _v: mArr ? mArr[0] : ''
+                };
+            } else if (value instanceof Object) {
                 vObj[key] = getVirObject(value);
             } else {
                 vObj[key] = {
@@ -97,31 +120,14 @@
 
         // 递归原型
         let { __proto__ } = obj;
-        if (__proto__ !== Object.prototype) {
+        if (__proto__ !== Object.prototype && __proto__ !== Array.prototype) {
             newObj.pt = getVirObject(__proto__);
         } else {
             newObj.pt = "";
         }
-
-        return newObj;
-    }
-
-    // 获取虚拟数组方法
-    const getVirArray = (arr) => {
-        let newObj = {
-            _v: arr,
-            cn: arr.constructor.name,
-            t: "array"
+        if (obj instanceof Array) {
+            newObj.t = "Array";
         }
-
-        // 递归原型
-        let { __proto__ } = obj;
-        if (__proto__ !== Object.prototype) {
-            newObj.pt = getVirObject(__proto__);
-        } else {
-            newObj.pt = "";
-        }
-
         return newObj;
     }
 
@@ -130,11 +136,10 @@
     const new_console = Object.create(old_console);
     ["log", "warn", "error"].forEach(methodName => {
         new_console[methodName] = function (...args) {
+            // try {
             // 修正新对象
             let newArgs = args.map(arg => {
-                if (arg instanceof Array) {
-                    return getVirArray(arg);
-                } else if (arg instanceof Object) {
+                if (arg instanceof Object) {
                     return getVirObject(arg);
                 }
                 return arg;
@@ -155,6 +160,12 @@
                     args: newArgs
                 }
             });
+            // } catch (e) {
+            //     old_console.warn(`
+            //     An error occurred, please submit the data here:
+            //     https://github.com/kirakiray/XDTool/issues
+            //     `, e);
+            // }
 
             return old_console[methodName](...args);
         }

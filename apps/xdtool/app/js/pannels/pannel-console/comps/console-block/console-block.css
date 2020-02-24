@@ -227,6 +227,14 @@
     color: #1901c7;
 }
 
+.fun_color {
+    color: #10008d;
+}
+
+.fun2_color {
+    color: #202020;
+}
+
 .obj_content {
     display: block;
     /* margin-left: 10px; */

@@ -2,12 +2,16 @@ Component(async (load) => {
     const getType = (data) => Object.prototype.toString.call(data).replace('[object ', "").replace(']', "").toLowerCase();
 
     const getObjDesc = (obj) => {
-        if (getType(obj) == "object") {
-            let desc = "{";
-            let keys = Object.keys(obj)
-            keys.forEach(k => {
-                let { _v, en } = obj[k];
-                let v = _v;
+        let desc = "{";
+        let keys = Object.keys(obj)
+        keys.forEach(k => {
+            let e = obj[k];
+            let { _v, en } = e;
+            let v = _v;
+
+            if (e.t == "e") {
+                v = `<span class="color_black">${v}</span>`;
+            } else {
                 switch (getType(_v)) {
                     case "array":
                         v = "[...]";
@@ -23,15 +27,60 @@ Component(async (load) => {
                         break;
                 }
 
-                desc += `<span style="color:#565656;">${k}</span>:${v}, `;
-            });
-            if (keys.length) {
-                desc = desc.slice(0, -2);
             }
-            desc += "}";
-            return desc;
+
+            desc += `<span style="color:#565656;">${k}</span>:${v}, `;
+        });
+        if (keys.length) {
+            desc = desc.slice(0, -2);
         }
-        return obj;
+        desc += "}";
+        return desc;
+
+    }
+
+    const getArrDesc = (arrObj) => {
+        let desc = "[";
+
+        // 转换原始数组
+        let arr = JSON.parse(JSON.stringify(arrObj));
+        arr.length = arr.length._v;
+        arr = Array.from(arr);
+
+        arr.forEach((e, i) => {
+            let { _v, en } = e;
+            let v = _v;
+
+            if (e.t == "e") {
+                v = `<span class="color_black">${v}</span>`;
+            } else {
+                switch (getType(_v)) {
+                    case "array":
+                        v = "[...]";
+                        break;
+                    case "object":
+                        v = "{...}";
+                        break;
+                    case "string":
+                        v = `<span class="color_string">"${v}"</span>`;
+                        break;
+                    case "number":
+                        v = `<span class="color_num">${v}</span>`;
+                        break;
+                }
+            }
+
+
+            desc += `${v},`;
+        });
+
+        if (arrObj.length) {
+            desc = desc.slice(0, -1);
+        }
+
+        desc += ']';
+
+        return desc;
     }
 
     // 根据对象数据，生成对象元素
@@ -43,6 +92,13 @@ Component(async (load) => {
             case "array":
                 let vData = objData._v;
 
+                let descStr
+                if (objData.t == "Array") {
+                    descStr = getArrDesc(vData);
+                } else {
+                    descStr = getObjDesc(vData);
+                }
+
                 let ele = $(`
                 <div class="line putaway">
                     <div class="sanjiao_area"></div>
@@ -50,7 +106,7 @@ Component(async (load) => {
                     <div class="obj_line">
                         <div class="obj_key">${key}</div>
                         <span class="color_black">:</span>
-                        <div class="obj_value"> ${getObjDesc(vData)}</div>
+                        <div class="obj_value"> ${descStr}</div>
                     </div>
                     <div class="obj_content"></div>
                 </div>
@@ -118,14 +174,20 @@ Component(async (load) => {
                                     <div class="obj_line">
                                         <div class="obj_key pri_key">__proto__</div>
                                         <span class="color_black">:</span>
-                                        <div class="obj_value still">Object</div>
+                                        <div class="obj_value still">${objData.t || 'Object'}</div>
                                     </div>
                                 </div>
                                 `);
                         }
                         break;
                     case "string":
-                        ele.que(".obj_value").html = `<span class="color_black">"</span><span class="color_string">${vData}</span><span class="color_black">"</span>`;
+                        if (objData.t == "f") {
+                            ele.que(".obj_value").html = ` <span class="fun_color" style="display:inline-block;margin-left:4px;">f</span><span class="fun2_color">${vData}</span>`;
+                        } else if (objData.t == "e") {
+                            ele.que(".obj_value").html = `<span class="fun2_color">${vData}</span>`;
+                        } else {
+                            ele.que(".obj_value").html = `<span class="color_black">"</span><span class="color_string">${vData}</span><span class="color_black">"</span>`;
+                        }
                         ele.que(".sanjiao").class.add("hide");
                         break;
                     case "number":
