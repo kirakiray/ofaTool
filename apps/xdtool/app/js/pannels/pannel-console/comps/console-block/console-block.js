@@ -182,7 +182,7 @@ Component(async (load) => {
                         break;
                     case "string":
                         if (objData.t == "f") {
-                            ele.que(".obj_value").html = ` <span class="fun_color" style="display:inline-block;margin-left:4px;">f</span><span class="fun2_color">${vData}</span>`;
+                            ele.que(".obj_value").html = ` <span class="fun_color" style="display:inline-block;margin-left:4px;">ƒ</span><span class="fun2_color">${vData}</span>`;
                         } else if (objData.t == "e") {
                             ele.que(".obj_value").html = `<span class="fun2_color">${vData}</span>`;
                         } else {

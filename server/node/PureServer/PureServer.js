@@ -72,9 +72,9 @@ class PureServer {
             let respHead = {
                 // 服务器类型
                 'Server': "PureServer",
-                'access-control-allow-origin': "*"
+                'access-control-allow-origin': "*",
                 // 添加max-age（http1.1，一直缓存用；免去使用Etag和lastModify判断，只用版本号控制）
-                // 'Cache-Control': "max-age=315360000"
+                // 'Cache-Control': "max-age=10000"
             };
 
             // 主体传递对象ctx
