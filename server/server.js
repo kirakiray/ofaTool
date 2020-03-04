@@ -1,4 +1,4 @@
-const { BrowserWindow } = require('electron').remote;
+const { BrowserWindow, app } = require('electron').remote;
 const { PureServer } = require("./node/PureServer");
 const { StanzServerAgent } = require("./node/StanzAgent");
 const getRandomId = () => Math.random().toString(32).substr(2);
@@ -12,6 +12,8 @@ pureServer.port = 9876;
 
 // stanz服务代理对象
 stanzAgent.port = 9866;
+
+const dev = require("../dev");
 
 // 打开软件
 function openSoftware(opts) {
@@ -70,7 +72,16 @@ function openSoftware(opts) {
         win.loadURL(`${softwareUrl}?pageid=${getRandomId()}`);
 
         // 打开开发者工具
-        win.webContents.openDevTools();
+        dev.debug && win.webContents.openDevTools();
+
+        win.on("closed", judgeClose);
+    }
+}
+
+function judgeClose() {
+    let wins = BrowserWindow.getAllWindows();
+    if (wins.length === 1) {
+        app.quit();
     }
 }
 

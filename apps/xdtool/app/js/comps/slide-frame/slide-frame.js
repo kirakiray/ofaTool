@@ -38,7 +38,7 @@ Component({
 
         // 点击了左侧按钮
         this.on("click", "[slide-frame-btn]", e => {
-            let id = e.delegateTarget.attr("slide-frame-btn");
+            let id = e.delegateTarget.attrs["slide-frame-btn"];
 
             // 设置本地id
             this.active = id;

@@ -128,6 +128,14 @@
         if (obj instanceof Array) {
             newObj.t = "Array";
         }
+
+        // 正则添加断定
+        if (obj instanceof RegExp) {
+            newObj._v.source = {
+                _v: obj.source
+            };
+        }
+
         return newObj;
     }
 

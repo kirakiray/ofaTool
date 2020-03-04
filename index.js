@@ -11,11 +11,17 @@ function createWindow() {
         }
     })
 
+    const dev = require("./dev");
+
     // 加载server.html文件
     win.loadFile('server/server.html')
 
     // 打开开发者工具
-    win.webContents.openDevTools()
+    if (dev.debug) {
+        win.webContents.openDevTools()
+    } else {
+        win.hide();
+    }
 
     // win.hide();
 
