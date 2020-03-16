@@ -22,9 +22,9 @@ Component(async (load) => {
             clickCopy() {
                 if (clipboard) {
                     clipboard && clipboard.writeText(this.scriptSrc);
-                    dialog("复制标签成功");
+                    dialog("复制标签元素成功");
                 } else {
-                    dialog("复制标签失败，没有权限");
+                    dialog("复制标签元素失败，没有权限");
                 }
             }
         }

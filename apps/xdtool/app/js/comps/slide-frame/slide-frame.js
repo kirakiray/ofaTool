@@ -2,12 +2,6 @@ Component({
     tag: "slide-frame",
     temp: true,
     hostcss: "./slide-frame-host.css",
-    proto: {
-        // 更新左边图标
-        refreshLeftBtns() {
-
-        }
-    },
     data: {
         // 激活中的id
         active: 0
@@ -34,8 +28,6 @@ Component({
         }
     },
     ready() {
-        this.refreshLeftBtns();
-
         // 点击了左侧按钮
         this.on("click", "[slide-frame-btn]", e => {
             let id = e.delegateTarget.attrs["slide-frame-btn"];

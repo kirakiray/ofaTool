@@ -1,20 +1,29 @@
 <div class="main">
-    <div class="title" style="display:none;">设置</div>
-    <div class="con" style="display:none;">
+    <div class="title">设置</div>
+    <div class="con">
         <div class="line">
             <input type="checkbox" id="showHiddenFile" xv-model="showHiddenFile">
             <label for="showHiddenFile">显示隐藏文件（文件夹）</label>
         </div>
         <div class="line">
-            <input type="checkbox" id="showNodeModules" disabled="true" checked>
+            <input type="checkbox" id="showRemoterPannel" xv-model="showRemoterPannel">
+            <label for="showRemoterPannel">左侧显示remoter面板tab</label>
+        </div>
+        <div class="line">
+            <input type="checkbox" disabled="true" checked>
             <label for="showNodeModules">隐藏 node_modules</label>
         </div>
     </div>
     <div class="title">关于</div>
     <div class="con">
-        <div class="line">Copyright(R) 2020 YAO</div>
-        <div class="line">项目地址： https://github.com/kirakiray/XDTool</div>
-        <div class="line">问题反馈： https://github.com/kirakiray/XDTool/issues</div>
+        <div class="line">Copyright(R) 2020 <ele-link href="https://kirakiray.com/">YAO</ele-link>
+        </div>
+        <div class="line">项目地址： <ele-link href="https://github.com/kirakiray/XDTool">https://github.com/kirakiray/XDTool
+            </ele-link>
+        </div>
+        <div class="line">问题反馈：<ele-link href="https://github.com/kirakiray/XDTool/issues">
+                https://github.com/kirakiray/XDTool/issues</ele-link>
+        </div>
         <div class="line">当前版本： v0.1.0</div>
     </div>
 </div>

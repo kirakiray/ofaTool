@@ -19,5 +19,6 @@
   "homepage": "https://github.com/kirakiray/XDTool#readme",
   "dependencies": {
     "faye-websocket": "^0.11.3"
-  }
+  },
+  "devDependencies": {}
 }

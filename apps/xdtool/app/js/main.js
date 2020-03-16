@@ -36,6 +36,4 @@ drill = async (drill) => {
             $("#startLoading").remove();
         }, 300);
     }, 100);
-
-    console.log("stData => ", stData);
 }

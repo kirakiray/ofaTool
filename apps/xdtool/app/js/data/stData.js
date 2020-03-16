@@ -9,6 +9,8 @@ drill.define(async (load) => {
             e._unpush = ["active"];
         });
     }, true);
+
+    // projectData不推送
     stData._unpush = ["projectData"];
 
     stData.projectData = {

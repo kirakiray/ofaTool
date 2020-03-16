@@ -1,12 +1,22 @@
 Component(async (load) => {
     const stData = await load("data/stData");
 
+    await load("comps/ele-link");
+
     return {
         tag: "pannel-config",
         temp: true,
         css: true,
         data: {
-            showHiddenFile: false
+            // 不显示隐藏文件
+            showHiddenFile: false,
+            // 显示remoter面板
+            showRemoterPannel: false
+        },
+        proto: {
+            get slideFrame() {
+                return this.parents("slide-frame")[0];
+            }
         },
         watch: {
             showHiddenFile(e, showHidden) {
@@ -27,7 +37,14 @@ Component(async (load) => {
                 }
 
                 if (needRefresh) {
-                    this.parents("slide-frame")[0].que('pannel-file').refreshList();
+                    this.slideFrame.que('pannel-file').refreshList();
+                }
+            },
+            showRemoterPannel(e, showRemoterPannel) {
+                if (showRemoterPannel) {
+                    this.slideFrame.que(`[slide-frame-btn="remoter"]`).class.remove("hide");
+                } else {
+                    this.slideFrame.que(`[slide-frame-btn="remoter"]`).class.add("hide");
                 }
             }
         },
