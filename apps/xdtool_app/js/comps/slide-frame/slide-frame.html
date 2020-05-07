@@ -1,0 +1,70 @@
+<style>
+    :host {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .slide_frame {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        background-color: #eee;
+    }
+
+    .left_btns_tool {
+        display: flex;
+        flex-direction: column;
+        width: 45px;
+        height: 100%;
+        background-color: #fff;
+    }
+
+    .btns_slot {
+        display: flex;
+        flex-direction: column;
+        width: 45px;
+        overflow: hidden;
+        transition: all ease .2s;
+    }
+
+    .btootm_btns {
+        position: relative;
+        margin-top: 50px;
+        padding-top: 10px;
+        /* border-top: #eee solid 1px; */
+    }
+
+    .btootm_btns:before {
+        display: block;
+        content: "";
+        width: 31px;
+        height: 1px;
+        background-color: #eee;
+        margin-left: 7px;
+    }
+
+    .left_btn:hover {
+        background-color: rgba(0, 0, 0, .05);
+    }
+
+    .slide_frame_main {
+        position: relative;
+        flex: 1;
+    }
+
+</style>
+<div class="slide_frame">
+    <div class="left_btns_tool">
+        <div class="btns_slot">
+            <slot name="btn"></slot>
+        </div>
+        <div class="btootm_btns">
+            <slot name="bottomBtn"></slot>
+        </div>
+    </div>
+    <div class="slide_frame_main">
+        <slot></slot>
+    </div>
+</div>
