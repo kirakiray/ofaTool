@@ -17,13 +17,13 @@ function createWindow() {
     win.loadFile('server/server.html')
 
     // 打开开发者工具
-    if (dev.debug) {
-        win.webContents.openDevTools()
-    } else {
-        win.hide();
-    }
+    // if (dev.debug) {
+    //     win.webContents.openDevTools()
+    // } else {
+    //     win.hide();
+    // }
 
-    // win.hide();
+    win.hide();
 
     win.on("closed", () => {
         win = null;
