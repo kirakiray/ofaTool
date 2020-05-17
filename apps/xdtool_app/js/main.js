@@ -1,9 +1,6 @@
 ofa = async () => {
-    ofa.config({
-        baseUrl: "js/"
-    });
-
-    load(`comps/ele-frame -pack`);
+    let [, ofaStorage] = await load(`comps/ele-frame -pack`, "js/ofaStorage");
+    window.ofaStorage = ofaStorage;
 
     // 慢行1秒
     setTimeout(() => {
