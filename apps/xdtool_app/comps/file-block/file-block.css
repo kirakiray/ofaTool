@@ -36,7 +36,7 @@
     transition: all ease .1s;
 }
 
-.file_block[isdir="false"] .sanjiao {
+.file_block[isdir="0"] .sanjiao {
     background-image: none;
 }
 
@@ -78,7 +78,7 @@
     margin-left: 20px;
 }
 
-.file_block[isdir="true"] .icon {
+.file_block[isdir="1"] .icon {
     background-image: url(img/dir.svg);
     background-size: auto 22px;
 }

@@ -8,13 +8,15 @@ Component(async (load) => {
             // 文件名
             name: "(empty)",
             // 是否文件夹
-            isDir: false,
-            // 目录是否打开
+            isDir: 0,
+            // 目录展开状态
             diropen: false,
             // 文件后缀名
             extname: "",
             // 是否隐藏
             hideblock: false,
+            // 是否加载过
+            loaded: false,
             // 不同步的字段
             _unpush: ["isDir", "extname", "hideblock"],
         },

@@ -5,7 +5,25 @@
 }
 
 .left {
-    background-color: #aaa;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+}
+
+.left .dir {
+    position: relative;
+    flex: 1;
+}
+
+.dir_main {
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    overflow-y: auto;
 }
 
 .main {
