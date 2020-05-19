@@ -6,6 +6,15 @@ define(async (load) => {
     // 测试地址
     let testDir = "/Users/huangyao/Documents/GitHub/XDTool";
 
+    const getWidth = (width, maxWidth) => {
+        if (width < 200) {
+            width = 200
+        } else if (width > maxWidth) {
+            width = maxWidth;
+        }
+        return width;
+    }
+
     // 读取单个目录的数据
     const readProject = async (dir, deepCount = 1) => {
         // 读取目录
@@ -56,6 +65,8 @@ define(async (load) => {
         temp: true,
         data: {},
         css: true,
+        proto: {
+        },
         async ready() {
             let projectEles = await readProject(testDir, 2);
 
@@ -96,6 +107,41 @@ define(async (load) => {
                     }
                 });
             });
+
+            // 左边改变宽度的方法
+            let oWidth;
+            const xtLeft = this.$shadow.$(".xt_left");
+            let startX = 0, startWidth = 0, maxWidth = window.innerWidth * 0.6, width = 260;
+            const mouseMove = (e) => {
+                let event = e.originalEvent;
+                let diffX = event.pageX - startX;
+                width = startWidth + diffX;
+
+                width = getWidth(width, maxWidth);
+
+                xtLeft.style.width = width + "px";
+            }
+
+            const mouseUp = (e) => {
+                $("body").off("mousemove", mouseMove);
+                $("body").off("mouseup", mouseUp);
+            }
+
+            this.$shadow.$(".left_sizer").on("mousedown", e => {
+                let event = e.originalEvent;
+                startX = event.pageX;
+                startWidth = xtLeft.width;
+                maxWidth = window.innerWidth * 0.6;
+
+                // 在body上绑定
+                $("body").on("mousemove", mouseMove);
+                $("body").on("mouseup", mouseUp);
+            })
+
+            // 设置初始值
+            if (oWidth) {
+                xtLeft.style.width = getWidth(oWidth, maxWidth) + "px";
+            }
         }
     };
 });

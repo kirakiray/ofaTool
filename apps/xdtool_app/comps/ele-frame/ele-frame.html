@@ -75,7 +75,9 @@
         <div class="top_tools">
             <div class="top_btn" @click="appBack" :hide="hideBack">&#xe60a;</div>
         </div>
-        <div class="title_name">XDTool</div>
+        <div class="title_name">
+            <slot name="title"></slot>
+        </div>
     </div>
     <div class="main">
         <div class="inner_main">
