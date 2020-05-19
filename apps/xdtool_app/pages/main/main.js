@@ -4,7 +4,7 @@ define(async (load) => {
     const fs = require("fs").promises;
 
     // 测试地址
-    let testDir = "/Users/huangyao/Documents/GitHub/XDTool";
+    let testDir = "/Users/huangyao/Documents/GitHub/XDTool/apps/xdtool_app";
 
     const getWidth = (width, maxWidth) => {
         if (width < 200) {
