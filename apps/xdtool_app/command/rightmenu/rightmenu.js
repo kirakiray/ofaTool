@@ -49,8 +49,8 @@ define(async (load) => {
     }
 
     return function (menus, opts = {
-        clientX: 300,
-        clientY: 300
+        clientX: 0,
+        clientY: 0
     }) {
         // 删掉之前的
         $.all(".menu_con").forEach(e => e.remove());
