@@ -1,6 +1,6 @@
-<div class="file_block" :extname="extname" :isdir="isDir" :diropen="diropen">
+<div class="file_block" @click="toggleDir" :extname="extname" :isdir="isDir" :diropen="diropen">
     <div class="line">
-        <div class="sanjiao" xv-tar="asd" @click="toggleDir"></div>
+        <div class="sanjiao"></div>
         <div class="icon" xv-tar="icon"></div>
         <div class="line_name">{{name}}</div>
     </div>

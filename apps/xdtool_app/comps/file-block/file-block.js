@@ -38,7 +38,15 @@ Component(async (load) => {
         },
         proto: {
             // 打开或关闭文件夹
-            async toggleDir() {
+            async toggleDir(e) {
+                if (!this.isDir) {
+                    return;
+                }
+
+                if (e.currentTarget.$host.ele != e.target.$host.ele) {
+                    return;
+                }
+
                 let diropen = this.diropen = !this.diropen;
 
                 if (diropen) {
