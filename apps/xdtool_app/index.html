@@ -23,6 +23,7 @@
             align-items: center;
             background-color: #fff;
             transition: all ease .3s;
+            overflow: hidden;
         }
 
         .loading_con.hide {
@@ -53,7 +54,8 @@
     <ele-frame>
         <div slot="title">XDTool</div>
         <xd-app>
-            <xd-page src="pages/main/main"></xd-page>
+            <xd-page src="pages/welcome/welcome"></xd-page>
+            <!-- <xd-page src="pages/main/main"></xd-page> -->
         </xd-app>
     </ele-frame>
     <div id="startLoading" class="loading_con">

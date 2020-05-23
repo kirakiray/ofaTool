@@ -24,31 +24,7 @@
     display: none;
 }
 
-/* .pannel {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    padding: 0 10px;
-}
-
-.pannel_title {
-    height: 36px;
-    line-height: 36px;
-    border-bottom: #e9e9e9 solid 1px;
-    font-size: 12px;
-} */
-
 .iconfont {
     font-family: iconfont;
     font-size: 17px;
 }
-
-/* .p_overview {
-    box-sizing: border-box;
-    z-index: 10;
-    left: 2px;
-    top: 0;
-    width: calc(100% - 2px);
-    height: 100%;
-    background-color: #fff;
-} */
