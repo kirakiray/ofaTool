@@ -49,11 +49,8 @@
         return arr;
     }
 
-    // 测试地址
-    let testDir = "/Users/huangyao/Documents/GitHub/XDTool/apps/xdtool_app";
-
     task(async (load, { _this, dir }) => {
-        let projectEles = await readProject(dir || testDir, 2);
+        let projectEles = await readProject(dir, 2);
 
         // 添加元素
         _this.$dirMain.push(...projectEles);
@@ -80,7 +77,7 @@
 
                     if (target.isDir && target.isDir == 1) {
                         // 读取路径
-                        let newDir = testDir + "/" + target.getPath();
+                        let newDir = dir + "/" + target.getPath();
 
                         let arr = await readProject(newDir);
 
