@@ -26,6 +26,8 @@
                     isDir: 1
                 });
 
+                compData.data.dir = `${dir}/${e}`;
+
                 // 读取多一级目录
                 if (deepCount > 0) {
                     let childs_arr = await readProject(`${dir}/${e}`, deepCount);

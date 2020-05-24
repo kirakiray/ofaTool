@@ -27,6 +27,10 @@ define(async (load) => {
             </div>
             `);
 
+            if (e.disabled) {
+                menuBlock.class.add("disabled");
+            }
+
             if (e.submenu) {
                 menuBlock.class.add("san_jiao");
 

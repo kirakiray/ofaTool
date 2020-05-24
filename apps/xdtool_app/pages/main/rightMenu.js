@@ -5,21 +5,39 @@
 
         _this.$shadow.$('.xt_left').on("contextmenu", "file-block", e => {
             rightMenu([{
-                label: '文艺1',
+                label: '添加 ofa Component',
                 click() {
                     console.log('点击文件');
                 }
             }, {
-                label: '文件2',
+                label: '添加 ofa Page',
                 click() {
                     console.log('点击文件');
                 }
-            }, {
-                label: '文件3',
-                click() {
-                    console.log('点击文件');
-                }
-            }], e.originalEvent);
+            },
+            { type: "separator" },
+            {
+                label: "剪切",
+                disabled: true
+            },
+            {
+                label: "复制",
+                disabled: true
+            },
+            {
+                label: "粘贴",
+                disabled: true
+            },
+            { type: "separator" },
+            {
+                label: "重命名",
+                disabled: true
+            },
+            {
+                label: "删除",
+                disabled: true
+            }
+            ], e.originalEvent);
         });
     })
 })();

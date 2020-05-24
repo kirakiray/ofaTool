@@ -47,12 +47,16 @@
         xd-app {
             height: 100%;
         }
+
+        #frameTitle:not(:empty):before {
+            content: " - ";
+        }
     </style>
 </head>
 
 <body>
     <ele-frame>
-        <div slot="title">XDTool</div>
+        <div slot="title">XDTool<span id="frameTitle"></span></div>
         <xd-app>
             <!-- <xd-page src="pages/welcome/welcome"></xd-page> -->
             <!-- <xd-page src="pages/main/main"></xd-page> -->

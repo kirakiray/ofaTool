@@ -105,6 +105,9 @@ define(async (load) => {
             async openProject(dir) {
                 await this.addProject(dir);
 
+                $("#frameTitle").text = dir.length < 20 ? dir : "..." + dir.slice(20);
+                $("#frameTitle").attrs.title = dir;
+
                 // 跳转到相应页面
                 this.navigate({
                     src: "pages/main/main",
