@@ -52,8 +52,8 @@
     // 测试地址
     let testDir = "/Users/huangyao/Documents/GitHub/XDTool/apps/xdtool_app";
 
-    task(async (load, { _this }) => {
-        let projectEles = await readProject(testDir, 2);
+    task(async (load, { _this, dir }) => {
+        let projectEles = await readProject(dir || testDir, 2);
 
         // 添加元素
         _this.$dirMain.push(...projectEles);

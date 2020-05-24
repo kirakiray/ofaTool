@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="title">XDTool - 让前端开发变得更简单</div>
+    <div class="title">XDTool - 让开发变得更简单</div>
     <div class="main">
         <div class="start">
             <div class="start_title">开始使用</div>
@@ -10,7 +10,7 @@
                 <div class="s_btn_title">创建项目</div>
                 <div class="s_btn_desc">选择拥有基础代码的项目模板</div>
             </div> -->
-            <div class="s_btn">
+            <div class="s_btn" @click="clickOpen">
                 <div class="s_btn_icon iconfont">
                     &#xe60d;
                 </div>
@@ -28,44 +28,22 @@
         <div class="history">
             <div class="start_title">最近打开的项目</div>
             <div class="history_list">
-                <div class="history_list_inner">
-                        <div class="p_item">
-                            <div class="p_item_icon">
-                                <div class="p_item_icon_block iconfont"> &#xe60d;</div>
-                            </div>
-                            <div class="p_item_info">
-                                <div class="p_item_top">
-                                    <div class="p_item_name">我是项目名</div>
-                                    <div class="p_item_time">2020-09-10 21:24</div>
-                                </div>
-                                <div class="p_item_path">/user/admin/aaaa/bbb</div>
-                            </div>
+                <div class="history_list_inner"></div>
+                <!-- <div class="history_list_inner">
+                    <div class="p_item">
+                        <div class="p_item_icon">
+                            <div class="p_item_icon_block iconfont"> &#xe60d;</div>
                         </div>
-                        <div class="p_item">
-                            <div class="p_item_icon">
-                                <div class="p_item_icon_block iconfont"> &#xe60d;</div>
+                        <div class="p_item_info">
+                            <div class="p_item_top">
+                                <div class="p_item_name">我是项目名</div>
+                                <div class="p_item_time">2020-09-10 21:24</div>
                             </div>
-                            <div class="p_item_info">
-                                <div class="p_item_top">
-                                    <div class="p_item_name">我是项目名</div>
-                                    <div class="p_item_time">2020-09-10 21:24</div>
-                                </div>
-                                <div class="p_item_path">/user/admin/aaaa/bbb</div>
-                            </div>
+                            <div class="p_item_path">/user/admin/aaaa/bbb</div>
                         </div>
-                        <div class="p_item">
-                            <div class="p_item_icon">
-                                <div class="p_item_icon_block iconfont"> &#xe60d;</div>
-                            </div>
-                            <div class="p_item_info">
-                                <div class="p_item_top">
-                                    <div class="p_item_name">我是项目名</div>
-                                    <div class="p_item_time">2020-09-10 21:24</div>
-                                </div>
-                                <div class="p_item_path">/user/admin/aaaa/bbb</div>
-                            </div>
-                        </div>
-                </div>
+                        <div class="p_item_close">×</div>
+                    </div>
+                </div> -->
             </div>
         </div>
     </div>
