@@ -1,11 +1,14 @@
-<div class="file_block" @click="toggleDir" :extname="extname" :isdir="isDir" :diropen="diropen">
+<div class="file_block" :mode="mode" :extname="extname" :isdir="isDir" :diropen="diropen">
     <div class="line">
-        <div class="sanjiao"></div>
+        <div class="sanjiao" @click="toggleDir"></div>
         <div class="icon" xv-tar="icon"></div>
         <div class="line_name">{{name}}</div>
+        <div class="input_line">
+            <input type="text" xv-model="name" xv-tar="input" :placeholder="placeholder">
+        </div>
     </div>
     <div class="childs" xv-tar="childs">
         <slot></slot>
     </div>
-    <div class="line_name_hoverline"></div>
+    <div class="line_name_hoverline" @click="toggleDir"></div>
 </div>

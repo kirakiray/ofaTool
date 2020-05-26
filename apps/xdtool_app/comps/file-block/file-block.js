@@ -3,8 +3,12 @@ Component(async (load) => {
         tag: "file-block",
         temp: true,
         css: true,
-        attrs: ["name", "isDir"],
+        attrs: ["name", "isDir", "mode", "placeholder"],
         data: {
+            // 模式
+            // input模式是添加文件用的
+            mode: "",
+            placeholder: "",
             // 文件名
             name: "(empty)",
             // 是否文件夹
@@ -43,14 +47,10 @@ Component(async (load) => {
                     return;
                 }
 
-                if (e.currentTarget.$host.ele != e.target.$host.ele) {
-                    return;
-                }
-
                 let diropen = this.diropen = !this.diropen;
 
                 if (diropen) {
-                    this.emit("toggleDir", {
+                    this.emit("openDir", {
                         path: this.getPath()
                     });
                 }

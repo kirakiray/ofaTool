@@ -20,6 +20,12 @@
     background: rgba(255, 0, 0, 0.4);
 }
 
+
+::placeholder {
+    font-family: "FZLanTingHei-R-GBK", STHeiti STXihei, Microsoft Yahei, Arial;
+    font-size: 12px;
+}
+
 [xv-ele=""] {
     display: none;
 }

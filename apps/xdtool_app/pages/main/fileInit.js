@@ -57,7 +57,7 @@
         // 添加元素
         _this.$dirMain.push(...projectEles);
 
-        _this.$dirMain.on("toggleDir", (e, data) => {
+        _this.$dirMain.on("openDir", (e, data) => {
             // 低一层进行加载
             e.target.forEach(fileBlock => {
                 if (fileBlock.isDir && !fileBlock.loaded) {

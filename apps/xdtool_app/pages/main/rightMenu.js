@@ -4,10 +4,34 @@
         const rightMenu = await load("command/rightmenu -pack");
 
         _this.$shadow.$('.xt_left').on("contextmenu", "file-block", e => {
+            let { delegateTarget } = e;
+
             rightMenu([{
                 label: '添加 ofa Component',
                 click() {
-                    console.log('点击文件');
+                    // 打开当前元素
+                    delegateTarget.diropen = true;
+
+                    let inputBlock = $({
+                        tag: "file-block",
+                        mode: "input",
+                        name: "",
+                        placeholder: "请输入组件名称"
+                    });
+                    delegateTarget.unshift(inputBlock);
+                    setTimeout(() => {
+                        inputBlock.$input.ele.focus();
+                        inputBlock.$input.one("blur", e => {
+                            inputBlock.mode = "";
+
+                            // 需要新建的是
+                            if (inputBlock.name) {
+                                console.log("需要新建的组件名 =>", inputBlock.name);
+                            }
+
+                            inputBlock.remove();
+                        });
+                    }, 100);
                 }
             }, {
                 label: '添加 ofa Page',
