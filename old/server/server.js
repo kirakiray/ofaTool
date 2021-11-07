@@ -18,8 +18,8 @@ let softwareUrl = `http://localhost:${pureServer.port}/${softAfterName}/index.ht
 
 // 打开页面
 let win = new BrowserWindow({
-    width: 720,
-    height: 480,
+    width: 1000,
+    height: 660,
     minWidth: 600,
     minHeight: 400,
     frame: false,
@@ -32,3 +32,5 @@ let win = new BrowserWindow({
 win.loadURL(`${softwareUrl}`);
 
 dev.debug && win.webContents.openDevTools();
+
+win.on("closed", () => app.quit());

@@ -1,8 +1,8 @@
 {
   "name": "xdtool",
-  "version": "2.0.0",
-  "description": "Make front-end development easier",
-  "main": "index.js",
+  "version": "3.0.0",
+  "description": "Make ofajs easier to use",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "electron ."
@@ -17,8 +17,6 @@
     "url": "https://github.com/kirakiray/XDTool/issues"
   },
   "homepage": "https://github.com/kirakiray/XDTool#readme",
-  "dependencies": {
-    "faye-websocket": "^0.11.3"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }
