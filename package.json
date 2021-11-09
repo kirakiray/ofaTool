@@ -1,6 +1,6 @@
 {
-  "name": "xdtool",
-  "version": "3.0.0",
+  "name": "ofa-tool",
+  "version": "0.0.1",
   "description": "Make ofajs easier to use",
   "main": "main.js",
   "scripts": {
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kirakiray/XDTool.git"
+    "url": "git+https://github.com/kirakiray/ofaTool.git"
   },
   "author": "YAO",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/kirakiray/XDTool/issues"
+    "url": "https://github.com/kirakiray/ofaTool/issues"
   },
-  "homepage": "https://github.com/kirakiray/XDTool#readme",
+  "homepage": "https://github.com/kirakiray/ofaTool#readme",
   "dependencies": {},
   "devDependencies": {}
 }

@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="main.css">
+<div class="body">
+    <!-- <div class="left_bar" fill:left-block="panels">
+    </div> -->
+    <div class="main" fill:pagetemper="panels">
+    </div>
+</div>
+
+<div temp:left-block class="left_block" class:active_block="$host.activeId == $index" @click="$host.activeId = $index">
+    <div class="icon">{{$index}}</div>
+</div>
+<div temp:pagetemper>
+    <o-page :src="$data.src" class="container" :show="$index == $host.activeId"></o-page>
+</div>

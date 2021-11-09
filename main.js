@@ -7,13 +7,12 @@ function createWindow() {
         height: 600,
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
-            nodeIntegration: true
         }
     })
 
     win.webContents.openDevTools()
 
-    win.loadFile('app/tool.html')
+    win.loadFile('app/index.html')
 }
 
 app.whenReady().then(() => {
